@@ -1,0 +1,88 @@
+﻿@model edu_course.Models.tbl_collaborationValidation
+
+@{
+    ViewBag.Title = "Collaboration";
+    Layout = "~/Areas/Superadmin/Views/Shared/_Layout.cshtml";
+}
+<!-- Registrations page-->
+<div ng-controller="headerCtrl">
+    <div class="container" style="background-color:white ; width:80% ">
+        <h2 style="color:black; text-align:center"><b>COLLABURATION</b></h2>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <section>
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+
+                                @using (Html.BeginForm("collaboration", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        <hr />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.Label("Collaburation Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.CallobrationName, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text", placeholder = @Html.DisplayName("Enter Collaboration Name") } })
+                                            @Html.ValidationMessageFor(model => model.CallobrationName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.Label("Title", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.CallobrationTitle, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text", placeholder = @Html.DisplayName("Enter Collaboration Title") } })
+                                            @Html.ValidationMessageFor(model => model.CallobrationTitle, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="form-group">
+                                        @Html.Label("Image", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.TextBoxFor(model => model.CollImageFIle, new { @class = "form-control input-sm", @accept = "image/png,image/jpg,image/jpeg", type = "file" })
+                                            @Html.ValidationMessageFor(model => model.CollImageFIle, "", new { @class = "text-danger" })
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.TextAreaFor(model => model.Description, 5, 40, htmlAttributes: new { @class = "form-control input-sm", style = "width: 100%; max-width: 100%;", placeholder = @Html.DisplayName("Enter Description") })
+                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                        <div class="form-group ">
+                                            <div class="col-md-4">
+                                                <button type="submit" class="btn btn btn-success"> ADD </button>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+
+}
+

@@ -1,0 +1,136 @@
+﻿@model edu_course.Models.tbl_AssignmentValidation
+@{
+    //ViewBag.Title = "addfeedback";
+    Layout = "~/Areas/Teacher/Views/Shared/_Layout.cshtml";
+}
+
+
+<div ng-controller="headerCtrl">
+    <div class="container" style="background-color:white ; width:80% ">
+        <h2 style="color:black; text-align:center"><b>Assignment Form</b></h2>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <section>
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+
+                                @using (Html.BeginForm("assignment", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        <hr />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                                    </div>
+
+                                    @*<div class="form-group">
+                                            @Html.LabelFor(model => model.ClassId, "ClassId", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("ClassId", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.ClassId, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>*@
+                                    <div class="form-group">
+                                        @Html.Label("Assignment Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.AssignmentName, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text", placeholder = @Html.DisplayName("Enter Assignment Name") } })
+                                            @Html.ValidationMessageFor(model => model.AssignmentName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    @*<div class="form-group">
+                                            @Html.Label("Course", htmlAttributes: new { @class = "control-label col-md-4" })
+                                            <div class="col-md-6 col-sm-8 col-12">
+                                                @Html.DropDownList("Select Course", (IEnumerable<SelectListItem>)ViewData["Courses"], "Select Course", new { style = "width:270px; height:40px;margin-left:10px;border:1px solid #d1d3e2;"@class="form-control" })
+                                                @Html.ValidationMessageFor(x => Model.CourseId, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>*@
+
+                                    @*<div class="form-group">
+                                            @Html.Label("Class", htmlAttributes: new { @class = "control-label col-md-4" })
+                                            <div class="col-md-6 col-sm-8 col-12">
+                                                @Html.DropDownList("Select Class", (IEnumerable<SelectListItem>)ViewData["Classes"], "Select Class", new
+                                                {style = "width:270px; height:40px;margin-left:10px;border:1px solid #d1d3e2;" @class = "form-control"
+                                            })
+                                                @Html.ValidationMessageFor(x => Model.ClassId, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>*@
+
+
+
+                                    <div class="form-group">
+                                        @Html.Label("Course", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12 col-sm-12 col-12">
+
+                                            @Html.DropDownListFor(model => model.CourseId, (SelectList)ViewBag.course, "Select Course", new { required = "required", @class = "form-control", @id = "ddCourseId" })
+
+                                            @Html.ValidationMessageFor(x => Model.CourseId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                    <div class="form-group">
+                                        @Html.Label("Assignment URL", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.TextBoxFor(model => model.UserdocFIle, new
+                                       {@*@accept = "image/png,image/jpg,image/jpeg",*@ type = "file",@class = "form-control input-sm"
+                                       })
+                                            @Html.ValidationMessageFor(model => model.UserdocFIle, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessage("CustomError")
+                                        </div>
+                                    </div>
+                                    @*<div class="form-group">
+                                            @Html.LabelFor(m => m.Date, new { @class = "col-md-2 control-label" }),
+                                            <div class="col-md-10">
+                                                @Html.TextBoxFor(m => m.Date, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", type = "datetime-local" })
+                                                @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>*@
+
+                                    <div class="form-group">
+                                        @Html.Label("Duration", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text", placeholder = @Html.DisplayName("Enter Duration") } })
+                                            @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn btn-success"> Submit </button>
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+
+}

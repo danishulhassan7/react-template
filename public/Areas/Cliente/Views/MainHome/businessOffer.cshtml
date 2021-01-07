@@ -1,0 +1,183 @@
+﻿@model IEnumerable<edu_course.Models.ArticleDetail>
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/blogs.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:22 GMT -->
+<head>
+    <style>
+
+    </style>
+</head>
+
+
+<!-- Body -->
+<body>
+    <header class="inner">
+        <!-- Banner -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 id="homeHeading"><a href="@Url.Action("Index", "MainHome")">Home</a> / <span>BUSINESS OFFER</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- blogs  -->
+    <section class="section-bottom-border">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8 list-container">
+                    @foreach (var item in ViewBag.artis)
+                    {
+                    <!--Post -->
+                        <div class="post-preview">
+                            <a href="@Url.Action("businessOfferview", "MainHome", new { id = item.art.ArticleId,item.art.Title })">
+                                <div class="list-thumb" style="width: 100%;
+  height:auto;
+  background-image: url('@Url.Content(item.art.imgPath)');
+  background-size: 100% 100%;
+ border: 2px solid #5DC560;    ">
+                                    @*<div class="list-thumb" id="na" style="background-image:url('@Url.Content(item.art.imgPath)')">*@
+                                    <div></div>
+                                    @*<div class="img-box"><img src="@Url.Content(item.art.imgPath)" width="150" height="320" alt="it's me Image" /></div>*@
+                                </div>
+                                <h2 class="post-title"><span>@item.art.Title</span></h2>
+                            </a>
+                            <p class="post-meta">Posted by <a href="javascript:void(0)">@item.log.Name</a> on @item.art.CreatedDate</p>
+                        </div>
+                        <hr>
+                    }
+
+                    <!-- Pager -->
+                    @*<ul class="pager">
+                                <li class="previous"> <a href="javascript:void(0)">&larr; New Posts</a> </li>
+                                <li class="next"> <a href="javascript:void(0)">Older Posts &rarr;</a> </li>
+                            </ul>
+                        </div>*@
+
+                    <div class="row">
+                        <div class="col-12">
+                            @{
+                                double totalPages = ViewBag.TotalPages;
+
+                                <ul class="pagination">
+                                    @if (ViewBag.PageNumber == 1)
+                                    {
+                                        <li>
+                                            @Html.ActionLink("New Posts", "businessOffer", new { artis = ViewBag.artis == null ? "Asc" : ViewBag.artis, SortBy = " ", PageNumber = ViewBag.PageNumber })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            @Html.ActionLink("New Posts", "businessOffer", new { artis = ViewBag.artis == null ? "Asc" : ViewBag.artis, SortBy = " ", PageNumber = ViewBag.PageNumber - 1 })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+
+                                    @for (int i = 1; i <= totalPages; i++)
+                                    {
+                                        if (i == ViewBag.PageNumber)
+                                        {
+                                            <li class="active">
+                                                @Html.ActionLink(i.ToString(), "businessOffer", new { artis = ViewBag.artis == null ? "Asc" : ViewBag.artis, SortBy = " ", PageNumber = i })
+                                                @*<a>@i</a>*@
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                @Html.ActionLink(i.ToString(), "businessOffer", new { artis = ViewBag.artis == null ? "Asc" : ViewBag.artis, SortBy = " ", PageNumber = i })
+                                                @*<a>@i</a>*@
+                                            </li>
+                                        }
+                                    }
+                                    @if (ViewBag.PageNumber == totalPages)
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Old Posts", "businessOffer", new { artis = ViewBag.artis == null ? "Asc" : ViewBag.artis, SortBy = " ", PageNumber = ViewBag.PageNumber })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Old Posts", "businessOffer", new { artis = ViewBag.artis == null ? "Asc" : ViewBag.artis, SortBy = " ", PageNumber = ViewBag.PageNumber + 1 })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+
+                                </ul>
+
+
+
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- ==== Sidebar Starts Here ==== -->
+                <div class="col-md-4 sidebar">
+                    <!--Sidebar Social Links-->
+                    <div class="sidebar-social"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-google-plus" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-youtube" aria-hidden="true"></i></a> </div>
+                    <hr>
+                    <!--Sidebar Popular Posts-->
+                    <h2>Popular Posts</h2>
+                    @foreach (var item in ViewBag.arti)
+                    {
+                        <div class="sidebar-post">
+                            <a href="javascript:void(0)"><span>@item.art.Title</span></a>
+                            <p class="post-meta">Posted by <a href="javascript:void(0)">@item.log.Name</a> on @item.art.CreatedDate</p>
+                        </div>
+                    }
+                    @*<div class="sidebar-post">
+                            <a href="javascript:void(0)">Curabitur efficitur malesuada velit, in ultricies nisi ornare eu.</a>
+                            <p class="post-meta">Posted by <a href="javascript:void(0)">Author Name</a> on July 8, 2016</p>
+                        </div>
+                        <div class="sidebar-post">
+                            <a href="javascript:void(0)">Curabitur efficitur malesuada velit, in ultricies nisi ornare eu.</a>
+                            <p class="post-meta">Posted by <a href="javascript:void(0)">Author Name</a> on July 8, 2016</p>
+                        </div>
+                        <div class="sidebar-post sidebar-post-last">
+                            <a href="javascript:void(0)">Curabitur efficitur malesuada velit, in ultricies nisi ornare eu.</a>
+                            <p class="post-meta">Posted by <a href="javascript:void(0)">Author Name</a> on July 8, 2016</p>
+                        </div>*@
+                    <hr>
+                    <!--Sidebar Call to Action-->
+                    <div class="sidebar-cta">
+                        <div>
+                            <img src="~/Content/img/e-book.png" alt="e book" />
+                            <h3>Please Download E-book</h3>
+                            <button class="btn-download">Download</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Sidebar Categories-->
+                    <h2>Categories</h2>
+                    <ul class="sidebar-list">
+                        <li><a href="javascript:void(0)">Category one</a></li>
+                        <li><a href="javascript:void(0)">Category two</a></li>
+                        <li><a href="javascript:void(0)">Category three</a></li>
+                        <li><a href="javascript:void(0)">Category four</a></li>
+                        <li><a href="javascript:void(0)">Category five</a></li>
+                        <li><a href="javascript:void(0)">Category six</a></li>
+                    </ul>
+                    <hr>
+                    <!--Sidebar Popular Tags-->
+                    <h2>Popular Tags</h2>
+                    <div class="sidebar-tags"> <a href="javascript:void(0)">HTML5</a> <a href="javascript:void(0)">Bootstrap</a> <a href="javascript:void(0)">CSS3</a> <a href="javascript:void(0)">jquery</a> <a href="javascript:void(0)">Blog</a> <a href="javascript:void(0)">HTML Blog</a> <a href="javascript:void(0)">Themeforest</a> <a href="javascript:void(0)">Sidebar</a> </div>
+                </div>
+                <!-- ==== Sidebar Ends Here ==== -->
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/blogs.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:23 GMT -->
+</html>

@@ -1,0 +1,145 @@
+﻿@model IEnumerable<edu_course.Models.KidsStoryDetails>
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/blogs.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:22 GMT -->
+<head>
+
+</head>
+
+<!-- Body -->
+<body>
+    <header class="inner">
+        <!-- Banner -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 id="homeHeading"><a href="@Url.Action("Index", "MainHome")">Home</a> / <span>KIDS STORY</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- blogs  -->
+    <section class="section-bottom-border">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8 list-container">
+                    @foreach (var item in ViewBag.ks)
+                    {
+                    <!--Post -->
+                        <div class="post-preview">
+                            <a href="@Url.Action("kidStoryView", "MainHome", new { id = item.KS.StoryId,item.KS.StoryTitle })">
+                                <div class="list-thumb" style="width: 100%;height:auto;background-image: url('@Url.Content(item.KS.imgPath)');background-size: 100% 100%;border: 2px solid #5DC560;    ">
+
+                                    @*<div class="list-thumb"style="background-image:url('@Url.Content(item.KS.imgPath)')">*@
+                                    <div></div>
+                                    @*<div class="img-box"><img src="@Url.Content(item.KS.imgPath)" width="150" height="320" alt="it's me Image" /></div>*@
+                                </div>
+                                <h2 class="post-title"><span>@item.KS.StoryTitle</span></h2>
+                            </a>
+                            <p class="post-meta">Posted by <a href="javascript:void(0)">@item.KST.KidsStoryName</a> on @item.KS.CreatedDate</p>
+                        </div>
+                        <hr>
+                    }
+
+                    
+
+                    <div class="row">
+                        <div class="col-12">
+                            @{
+                                double totalPages = ViewBag.TotalPages;
+
+                                <ul class="pagination">
+                                    @if (ViewBag.PageNumber == 1)
+                                    {
+                                        <li>
+                                            @Html.ActionLink("New Posts", "kidStory", new { ks = ViewBag.ks == null ? "Asc" : ViewBag.ks, SortBy = " ", PageNumber = ViewBag.PageNumber })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            @Html.ActionLink("New Posts", "kidStory", new { ks = ViewBag.ks == null ? "Asc" : ViewBag.ks, SortBy = " ", PageNumber = ViewBag.PageNumber - 1 })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+
+                                    @for (int i = 1; i <= totalPages; i++)
+                                    {
+                                        if (i == ViewBag.PageNumber)
+                                        {
+                                            <li class="active">
+                                                @Html.ActionLink(i.ToString(), "kidStory", new { ks = ViewBag.ks == null ? "Asc" : ViewBag.ks, SortBy = " ", PageNumber = i })
+                                                @*<a>@i</a>*@
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                @Html.ActionLink(i.ToString(), "kidStory", new { ks = ViewBag.ks == null ? "Asc" : ViewBag.ks, SortBy = " ", PageNumber = i })
+                                                @*<a>@i</a>*@
+                                            </li>
+                                        }
+                                    }
+                                    @if (ViewBag.PageNumber == totalPages)
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Old Posts", "kidStory", new { ks = ViewBag.ks == null ? "Asc" : ViewBag.ks, SortBy = " ", PageNumber = ViewBag.PageNumber })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Old Posts", "kidStory", new { ks = ViewBag.ks == null ? "Asc" : ViewBag.ks, SortBy = " ", PageNumber = ViewBag.PageNumber + 1 })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+
+                                </ul>
+
+
+
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- ==== Sidebar Starts Here ==== -->
+                <div class="col-md-4 sidebar">
+                    <!--Sidebar Social Links-->
+                    <div class="sidebar-social"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-google-plus" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-youtube" aria-hidden="true"></i></a> </div>
+                    <hr>
+                    <!--Sidebar Popular Posts-->
+                    <h2>Popular Posts</h2>
+                    @foreach (var item in ViewBag.kss)
+                    {
+                        <div class="sidebar-post">
+                            <a href="javascript:void(0)"><span>@item.KS.StoryTitle</span></a>
+                            <p class="post-meta">Posted by <a href="javascript:void(0)">@item.KST.KidsStoryName</a> on @item.KS.CreatedDate</p>
+                        </div>
+                    }
+                   
+                    <hr>
+                    
+                    
+                    
+                    <hr>
+                    <!--Sidebar Popular Tags-->
+                    <h2>Popular Tags</h2>
+                    <div class="sidebar-tags"> <a href="javascript:void(0)">HTML5</a> <a href="javascript:void(0)">Bootstrap</a> <a href="javascript:void(0)">CSS3</a> <a href="javascript:void(0)">jquery</a> <a href="javascript:void(0)">Blog</a> <a href="javascript:void(0)">HTML Blog</a> <a href="javascript:void(0)">Themeforest</a> <a href="javascript:void(0)">Sidebar</a> </div>
+                </div>
+                <!-- ==== Sidebar Ends Here ==== -->
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/blogs.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:23 GMT -->
+</html>

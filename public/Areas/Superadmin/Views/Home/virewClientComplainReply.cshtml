@@ -1,0 +1,80 @@
+﻿@model edu_course.Models.tblClientorSchoorComplainValidation
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/apply-course.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:18 GMT -->
+<head>
+    @{
+        ViewBag.Title = "compalinform";
+
+    }
+
+</head>
+
+
+<!-- Registrations page-->
+<div ng-controller="headerCtrl">
+    <div class="container" style="background-color:white ; width:80% ">
+        <h2 style="color:black; text-align:center"><b>Complain Form </b></h2>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <section>
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-horizontal">
+
+                                        @*<div class="form-group">
+                                                @Html.Label("Name", new { @class = "control-label col-md-6" })
+                                                <div class="col-md-12  col-sm-12">
+                                                    <input type="text" id="Name" class="form-control" name="Name" readonly="readonly" />
+
+                                                </div>
+                                            </div>*@
+
+
+
+
+
+                                        <div class="form-group">
+                                            @Html.Label("Complain Reply", new { @class = "control-label col-md-6" })
+                                            <div class="col-md-12  col-sm-12">
+                                                @Html.TextAreaFor(model => model.replymsg, 10, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;", placeholder = @Html.DisplayName("Enter Complain") })
+                                                @Html.ValidationMessageFor(model => model.replymsg, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="form-group ">
+                                            <div class="col-md-4">
+                                                <button type="submit" class="btn btn btn-success"> Submit Reply </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        @if (ViewBag.Message != null)
+        {
+            <script type="text/javascript">
+
+             window.onload = function () {
+              alert("@ViewBag.Message");
+              };
+            </script>
+
+        }

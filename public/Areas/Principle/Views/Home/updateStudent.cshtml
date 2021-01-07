@@ -1,0 +1,112 @@
+﻿@model  edu_course.Models.Student
+
+@{
+    Layout = "~/Areas/Principle/Views/Shared/_Layout.cshtml";
+}
+
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+<!-- Registrations page-->
+<div ng-controller="headerCtrl">
+    <div class="container" style="background-color:white ; width:80% ">
+        <h2 style="color:black; text-align:center"><b>ADD STUDENT </b></h2>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <section>
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                @using (Html.BeginForm("updateStudent", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-horizontal">
+                                        <hr />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = Html.DisplayName("Enter Name") } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        @Html.Label("Email", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = @Html.DisplayName("Enter Email") } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                    @*<div class="form-group">
+                @Html.Label("Password", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control input-sm", @type = "password", placeholder = @Html.DisplayName("Enter Password") } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+            </div>*@
+
+                                    <div class="form-group">
+                                        @Html.Label("Address", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                        @Html.TextAreaFor(model => model.Address, 6, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;", placeholder = @Html.DisplayName("Enter Address") })
+                                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.Label("Phone", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                        @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = @Html.DisplayName("Enter Contact Number") } })
+                                        @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.Label("Class", htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+                                        @Html.DropDownListFor(model => model.Class_Id, (SelectList)ViewBag.schoolclass, "Select Class", new { required = "required", @class = "form-control" })
+
+                                        @Html.ValidationMessageFor(x => Model.Class_Id, "", new { @class = "text-danger" })
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.Label("Section", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                        @Html.DropDownListFor(model => model.Section_Id, (SelectList)ViewBag.schoolsection, "Select Section", new { required = "required", @class = "form-control" })
+
+                                        @Html.ValidationMessageFor(x => Model.Section_Id, "", new { @class = "text-danger" })
+
+                                    </div>
+
+
+                                    <div class="form-group ">
+                                        <div class="col-4">
+                                            <button type="submit" class="btn btn btn-success"> Update </button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+         window.onload = function () {
+          alert("@ViewBag.Message");
+          };
+    </script>
+
+}

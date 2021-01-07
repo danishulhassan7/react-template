@@ -1,0 +1,166 @@
+﻿@model IEnumerable<edu_course.Models.AdvisoryBoard>
+@{
+    var item = ViewBag.artis;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:23 GMT -->
+<head>
+
+</head>
+
+<!-- Body -->
+<body>
+    <header class="inner">
+        <!-- Banner -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 id="homeHeading"><a href="index-2.html">Home</a> / <span>Advisory Board</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog single page -->
+    <section class="section-bottom-border">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 list-container post">
+                    <!-- Post Social Sharing icons -->
+                    <!-- Post description -->
+
+                    @foreach (var lea in ViewBag.board)
+                    {
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-3 col-xs-4">
+                                <a href="javascript:void(0)"> <img src="@Url.Content(lea.Image)" width="150" height="100" alt="Responsive image" class="img-thumbnail float-left" /> </a> <span class="caption text-muted"></span>
+                            </div>
+                            <div class="col-md-8 col-sm-8 col-xs-8" style="margin-top:-10px;">
+                                <h2 class="single-post-heading">@lea.Name</h2>
+                                <h4>@lea.Designation</h4>
+                                <p>@lea.Short_Description</p>
+
+                                <p>@Html.Raw(lea.Long_Description)</p>
+                            </div>
+                            <a class="service-box-button" href="@Url.Action("detailBoardview", "MainHome", new { Id = lea.Board_Id,lea.Name  })">DETAIL</a>
+
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-12">
+                            @{
+                                double totalPages = ViewBag.TotalPages;
+
+                                <ul class="pagination">
+                                    @if (ViewBag.PageNumber == 1)
+                                    {
+                                        <li>
+                                            @Html.ActionLink("New Posts", "advisoryBoardview", new { board = ViewBag.board == null ? "Asc" : ViewBag.board, SortBy = " ", PageNumber = ViewBag.PageNumber })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            @Html.ActionLink("New Posts", "advisoryBoardview", new { board = ViewBag.board == null ? "Asc" : ViewBag.board, SortBy = " ", PageNumber = ViewBag.PageNumber - 1 })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+
+                                    @for (int i = 1; i <= totalPages; i++)
+                                    {
+                                        if (i == ViewBag.PageNumber)
+                                        {
+                                            <li class="active">
+                                                @Html.ActionLink(i.ToString(), "advisoryBoardview", new { board = ViewBag.board == null ? "Asc" : ViewBag.board, SortBy = " ", PageNumber = i })
+                                                @*<a>@i</a>*@
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                @Html.ActionLink(i.ToString(), "advisoryBoardview", new { board = ViewBag.board == null ? "Asc" : ViewBag.board, SortBy = " ", PageNumber = i })
+                                                @*<a>@i</a>*@
+                                            </li>
+                                        }
+                                    }
+                                    @if (ViewBag.PageNumber == totalPages)
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Old Posts", "advisoryBoardview", new { board = ViewBag.board == null ? "Asc" : ViewBag.board, SortBy = " ", PageNumber = ViewBag.PageNumber })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Old Posts", "advisoryBoardview", new { board = ViewBag.board == null ? "Asc" : ViewBag.board, SortBy = " ", PageNumber = ViewBag.PageNumber + 1 })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+
+                                </ul>
+
+
+
+                            }
+                        </div>
+                    </div>
+                    <!-- post tags -->
+                </div>
+                <!-- ==== Sidebar Starts Here ==== -->
+                <div class="col-md-4 sidebar">
+
+                    <!--Sidebar Social Links-->
+                    <div class="sidebar-social"> <a href="javascript:void(0)"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-google-plus" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-linkedin" aria-hidden="true"></i></a> <a href="javascript:void(0)"><i class="fa fa-youtube" aria-hidden="true"></i></a> </div>
+                    <hr>
+                    <!--Sidebar Popular Posts-->
+                    <h2>Popular Posts</h2>
+                    @foreach (var items in ViewBag.boards)
+                    {
+                        <div class="sidebar-post">
+                            <a href="javascript:void(0)"><span>@items.Designation</span></a>
+                            <p class="post-meta">Posted by <a href="javascript:void(0)">@items.Name</a></p>
+                        </div>
+                    }
+
+                    <hr>
+                    <!--Sidebar Call to Action-->
+                    <div class="sidebar-cta">
+                        <div>
+                            <img src="img/e-book.png" alt="e book" />
+                            <h3>Please Download E-book</h3>
+                            <button class="btn-download">Download</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Sidebar Categories-->
+                    <h2>Categories</h2>
+                    <ul class="sidebar-list">
+                        <li><a href="javascript:void(0)">Category one</a></li>
+                        <li><a href="javascript:void(0)">Category two</a></li>
+                        <li><a href="javascript:void(0)">Category three</a></li>
+                        <li><a href="javascript:void(0)">Category four</a></li>
+                        <li><a href="javascript:void(0)">Category five</a></li>
+                        <li><a href="javascript:void(0)">Category six</a></li>
+                    </ul>
+                    <hr>
+                    <!--Sidebar Popular Tags-->
+                    <h2>Popular Tags</h2>
+                    <div class="sidebar-tags"> <a href="javascript:void(0)">HTML5</a> <a href="javascript:void(0)">Bootstrap</a> <a href="javascript:void(0)">CSS3</a> <a href="javascript:void(0)">jquery</a> <a href="javascript:void(0)">Blog</a> <a href="javascript:void(0)">HTML Blog</a> <a href="javascript:void(0)">Themeforest</a> <a href="javascript:void(0)">Sidebar</a> </div>
+                </div>
+                <!-- ==== Sidebar Ends Here ==== -->
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:24 GMT -->
+</html>

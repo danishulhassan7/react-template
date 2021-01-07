@@ -1,0 +1,179 @@
+﻿@model edu_course.Models.ClientMessage
+
+@{
+    //ViewBag.Title = "addfeedback";
+    Layout = "~/Areas/Cliente/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:23 GMT -->
+<head>
+
+</head>
+
+<!-- Body -->
+<body>
+    <header class="inner">
+        <!-- Banner -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 id="homeHeading"><a href="index-2.html">Home</a> / <span>Discussion Forum</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+    <div class="list-container post">
+
+
+        <!-- form row 1 -->
+
+
+        <div class="row-fluid">
+            <!-- form panel 1 -->
+            <div class="container">
+                <div class="card shadow mb-4">
+
+                    <div class="card-body">
+
+                        <!-- start panel-->
+                        <div class="panel panel-default">
+                            <div class="header-content">
+                                <h3 id="homeHeading">
+                                    Topic:<a href="#"> <span>@Model.Subject</span></a>
+
+</h3>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="card-header py-3">
+                                    <p>
+                                        @Html.ActionLink("Post New Message", "addTopic", "MainHome")
+                                    </p>
+                                </div>
+
+                                <div class="form-horizontal">
+
+                                    <div class="form-column col-lg-12 col-md-12 col-sm-12">
+
+                                        <div class="form-group">
+                                            <h3>Discussion</h3>
+                                            <div class="post-footer">
+                                                <form id="commentForm">
+                                                    
+                                                    
+                                                    <input type="hidden" name="Id" value="@Model.Id" />
+                                                    <div class="input-group">
+                                                        <input class="form-control comment-btn cke_dialog_ui_input_textarea" name="ReplyMessage" placeholder="Add a comment" type="text">
+                                                        <span class="input-group-addon"> <button id="btnComment" type="button"><i class="fa fa-edit"></i></button> </span>
+                                                    </div>
+
+
+                                                </form>
+                                                <ul class="comments-list">
+                                                    <li class="comment">
+                                                        <a class="pull-left" href="javascript:void(0)"> <img class="avatar" src="~/Content/img/user.png" alt="avatar"> </a>
+                                                        <div class="comment-body">
+                                                            <div class="comment-heading">
+                                                                <h4>@Model.From</h4>
+                                                            </div>
+                                                            <p></p>
+                                                            <p>@Model.MessageToPost</p>
+
+
+
+                                                        </div>
+                                                        <hr />
+                                                        @foreach (var items in ViewBag.disc)
+                                                        {
+                                                            <a class="pull-left" href="javascript:void(0)"> <img class="avatar" src="~/Content/img/user.png" alt="avatar"> </a>
+                                                            <div class="comment-body">
+                                                                <div class="comment-heading">
+                                                                    <h4>@items.cr.ReplyFrom</h4>
+                                                                 </div>
+                                                                    <p></p>
+                                                                    <p>@items.cr.ReplyMessage</p>
+                                                                    
+
+                                                                    
+                                                                </div>
+                                                                <hr />
+                                                        }
+                                                        @*<ul class="comments-list">
+                        <li class="comment">
+                            <a class="pull-left" href="javascript:void(0)"> <img class="avatar" src="~/Content/img/user2.png" alt="avatar"> </a>
+                            <div class="comment-body">
+                                <div class="comment-heading">
+                                    <h4 class="user">David</h4>
+                                    <h5 class="time">3 minutes ago</h5>
+                                </div>
+                                <p>ok, we will make it</p>
+                            </div>
+                        </li>
+                        <li class="comment">
+                            <a class="pull-left" href="javascript:void(0)"> <img class="avatar" src="~/Content/img/user3.png" alt="avatar"> </a>
+                            <div class="comment-body">
+                                <div class="comment-heading">
+                                    <h4 class="user">Thomos</h4>
+                                    <h5 class="time">3 minutes ago</h5>
+                                </div>
+                                <p>Ok, cool.</p>
+                            </div>
+                        </li>*@
+                                                        @*</ul>*@
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- comments end -->
+                                        </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end panel-->
+
+
+            </div>
+        </div>
+
+
+        <!-- end panel-->
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+    <script>
+   
+    $("#btnComment").click(function () {
+        $.ajax({
+
+            url: '@Url.Action("LeaveDiscussion", "MainHome", new { Area = ""})',
+            type: "post",
+            data: $("#commentForm").serialize()
+        }).done(function (response) {
+            if (response.Success) {
+                window.location.reload();
+
+            }
+            else {
+                swal("Error", response.Message, "error");
+            }
+        }).fail(function () {
+            swal("Error!", "Error Occurred Please Try Again Later", "error");
+
+        });
+
+
+
+
+    });
+    </script>

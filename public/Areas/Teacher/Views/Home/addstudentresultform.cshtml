@@ -1,0 +1,140 @@
+﻿@model edu_course.Models.StudentResult
+@{
+    //ViewBag.Title = "addfeedback";
+    Layout = "~/Areas/Teacher/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/apply-course.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:18 GMT -->
+<head>
+    @{
+        ViewBag.Title = "articleform";
+
+    }
+
+</head>
+
+<!-- Body -->
+<body>
+    <!-- Registrations page-->
+    <div ng-controller="headerCtrl">
+        <div class="container" style="background-color:white ; width:80% ">
+            <h2 style="color:black; text-align:center"><b>ADD STUDENT RESULT </b></h2>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <section>
+                            <div class="row">
+                                <div class="col-md-10 offset-md-1">
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-horizontal">
+                                            <div class="form-group">
+                                                @Html.Label("Student Registeration No", new { @class = "control-label col-md-6" })
+
+                                                <div class="col-md-12  col-sm-12">
+                                                    @Html.DropDownList("Select Registeration No", (IEnumerable<SelectListItem>)ViewData["StudentRegno"], "Select Registeration No", new
+                                           { @*style = "width:270px; height:40px;margin-left:10px;border:1px solid #d1d3e2;"*@ @class = "form-control"
+                                           })
+                                                    @Html.ValidationMessageFor(x => Model.StudentId, "", new { @class = "text-danger" })
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.Label("Name", new { @class = "control-label col-md-6" })
+                                                <div class="col-md-12  col-sm-12">
+                                                    <input type="text" id="Name" class="form-control" name="Name" readonly="readonly" />
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.Label("Email", new { @class = "control-label col-md-6" })
+                                                <div class="col-md-12  col-sm-12">
+                                                    <input type="text" id="Email" class="form-control" name="Email" readonly="readonly" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.Label("Course", new { @class = "control-label col-md-6" })
+
+                                                <div class="col-md-12  col-sm-12">
+                                                    <div class="col-md-6 col-sm-8 col-12">
+                                                        @Html.DropDownList("Select Course", (IEnumerable<SelectListItem>)ViewData["Courses"], "Select Course", new
+                                               { @*style = "width:270px; height:40px;margin-left:10px;border:1px solid #d1d3e2;"*@ @class = "form-control"
+                                               })
+                                                        @Html.ValidationMessageFor(x => Model.CourseId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="form-group">
+                                                @Html.Label("Class", new { @class = "control-label col-md-6" })
+
+                                                <div class="col-md-12  col-sm-12">
+                                                    @Html.DropDownList("Select Class", (IEnumerable<SelectListItem>)ViewData["Classes"], "Select Class", new
+                                           { @*style = "width:270px; height:40px;margin-left:10px;border:1px solid #d1d3e2;"*@@class = "form-control"
+                                           })
+                                                    @Html.ValidationMessageFor(x => Model.ClassId, "", new { @class = "text-danger" })
+
+                                                </div>
+
+                                            </div>
+
+                                            @*<div class="form-group">
+                                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                                                    <div class="col-md-10">
+                                                        @Html.TextAreaFor(model => model.Description, 10, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;" })
+                                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>*@
+
+
+                                            <div class="form-group">
+                                                @Html.Label("Marks Obtained", new { @class = "control-label col-md-6" })
+                                                <div class="col-md-12  col-sm-12">
+                                                    @Html.EditorFor(model => model.MarksObtained, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text", placeholder = @Html.DisplayName("Enter Marks Obtained") } })
+                                                    @Html.ValidationMessageFor(model => model.MarksObtained, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+
+                                            <div class="form-group ">
+                                                <div class="col-md-4">
+                                                    <button type="submit" class="btn btn btn-success"> ADD </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    }
+                                </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+            @if (ViewBag.Message != null)
+            {
+                <script type="text/javascript">
+
+         window.onload = function () {
+          alert("@ViewBag.Message");
+          };
+                </script>
+
+            }
+
+
+</body>
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/apply-course.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:18 GMT -->
+</html>

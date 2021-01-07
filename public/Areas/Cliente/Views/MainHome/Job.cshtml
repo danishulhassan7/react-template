@@ -1,0 +1,121 @@
+﻿@model IEnumerable<edu_course.Models.jobModel>
+<!DOCTYPE html>
+<html lang="en">
+@{
+// ViewBag.Title = "viewsevent";
+//IEnumerable<SelectListItem> c = ViewBag.course;
+}
+<!-- Mirrored from www.konnectplugins.com/edu-course/course.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:17 GMT -->
+<head>
+
+</head>
+
+<!-- Body -->
+<body>
+    <header class="inner">
+        <!-- Banner -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 id="homeHeading"><a href="@Url.Action("Index", "MainHome")">Home</a> / <span>Jobs Classified</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- blogs  -->
+    <section class="section-bottom-border">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in ViewBag.job)
+                {
+
+                <!--Course One-->
+                    <div class="col-sm-4 article-box">
+                        <article>
+                            <div class="news-post">
+                                <div class="img-box"><a href="#"><img src="https://www.prozameen.com/@Url.Content(item.imageUrl)" height="200" alt="it's me Image" /></a> </div>
+                                <div class="post-content-text">
+                                    <h4><span>@item.jobTitle</span></h4>
+                                    <h4><i class="fa fa-calendar-check-o" aria-hidden="true">Posted by&nbsp;<a href="javascript:void(0)">@item.shortDescription</a> on @item.date</i></h4>
+
+                                    <div class="post-more"><a href="@Url.Action("SingleJob", "MainHome", new { id = item.jobId,item.jobTitle })">View</a> </div>
+
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                }
+                
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    @{
+                        double totalPages = ViewBag.TotalPages;
+
+                        <ul class="pagination">
+                            @if (ViewBag.PageNumber == 1)
+                            {
+                                <li>
+                                    @Html.ActionLink("New Posts", "Job", new { job = ViewBag.job == null ? "Asc" : ViewBag.job, SortBy = " ", PageNumber = ViewBag.PageNumber })
+                                    @*<a>@i</a>*@
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    @Html.ActionLink("New Posts", "Job", new { job = ViewBag.job == null ? "Asc" : ViewBag.job, SortBy = " ", PageNumber = ViewBag.PageNumber - 1 })
+                                    @*<a>@i</a>*@
+                                </li>
+                            }
+
+                            @for (int i = 1; i <= totalPages; i++)
+                            {
+                                if (i == ViewBag.PageNumber)
+                                {
+                                    <li class="active">
+                                        @Html.ActionLink(i.ToString(), "Job", new { job = ViewBag.job == null ? "Asc" : ViewBag.job, SortBy = " ", PageNumber = i })
+                                        @*<a>@i</a>*@
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        @Html.ActionLink(i.ToString(), "Job", new { job = ViewBag.job == null ? "Asc" : ViewBag.job, SortBy = " ", PageNumber = i })
+                                        @*<a>@i</a>*@
+                                    </li>
+                                }
+                            }
+                            @if (ViewBag.PageNumber == totalPages)
+                            {
+                                <li>
+                                    @Html.ActionLink("Old Posts", "Job", new { job = ViewBag.job == null ? "Asc" : ViewBag.job, SortBy = " ", PageNumber = ViewBag.PageNumber })
+                                    @*<a>@i</a>*@
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    @Html.ActionLink("Old Posts", "Job", new { course = ViewBag.course == null ? "Asc" : ViewBag.course, SortBy = " ", PageNumber = ViewBag.PageNumber + 1 })
+                                    @*<a>@i</a>*@
+                                </li>
+                            }
+
+                        </ul>
+
+
+
+                    }
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+</body>
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/course.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:17 GMT -->
+</html>

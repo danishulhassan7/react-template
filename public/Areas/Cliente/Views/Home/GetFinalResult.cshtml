@@ -1,0 +1,77 @@
+﻿@model IEnumerable<edu_course.Models.ResultModel>
+
+
+
+@{
+    var percentage = ViewBag.counterquestion;
+}
+@{
+    var course = ViewBag.coursename;
+}
+@{
+    var username = ViewBag.username;
+}
+
+@{
+    var totalattempts = ViewBag.totalmarks;
+}
+@{
+    var marksobtained = ViewBag.MarksObtained;
+}
+@if (ViewBag.counterquestion != null)
+{
+    if (percentage >= 60)
+    {
+        @*<button type="submit" id="btnSave" class="btn btn btn-success"> Generate Certificate </button>*@
+
+        <button class="button button3" style="background-color: #5DC560; border-color:#5DC560; border-radius:5%;">@Html.ActionLink("Generate Certificate", "CertificateGeneration", new { Percentage = percentage, Coursename= course,Username= username, totalmarks= totalattempts, MarksObtained= marksobtained }, new { Style = "color:White; text-decoration:none;" })</button>
+
+
+    }
+    else
+    {
+        <p>No Button</p>
+    }
+
+}
+
+<table style="width:100%" class="table table-condensed">
+    <thead>
+        <tr>
+            <td>Question</td>
+            <td>Answer</td>
+            <td>Answer By USer</td>
+            <td>Status</td>
+        </tr>
+    </thead>
+
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @item.QuestionName
+            </td>
+            <td>
+                @item.Answer
+            </td>
+            <td>
+                @item.AnswerbyUser
+            </td>
+            <td>
+                @if (item.Status == "Correct")
+                {
+                    <label style="color:green">@item.Status</label>
+                }
+                else
+                {
+                    <label style="color:red">@item.Status</label>
+                }
+            </td>
+        </tr>
+    }
+
+
+
+</table>

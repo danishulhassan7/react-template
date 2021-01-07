@@ -1,0 +1,174 @@
+﻿@model IEnumerable<edu_course.Models.Course>
+@{
+ 
+    Layout = "~/Areas/Cliente/Views/Shared/_Layout2.cshtml";
+}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    @*@{
+        ViewBag.Title = "course";*@
+    <!-- Konnect Slider -->
+    @Styles.Render("~/Content/desigcss")
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- End of Topbar -->
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+
+            <!-- DataTales Example -->
+            <!-- blogs  -->
+            <section class="section-bottom-border">
+                <div class="container">
+                    <div class="row">
+                        @foreach (var item in ViewBag.course)
+                        {
+
+                <!--Course One-->
+                            <div class="col-sm-4 article-box">
+                                <article>
+                                    <div class="news-post">
+                                        <div class="img-box"><a href="#"><img src="@Url.Content(item.imageLink)" width="150" height="200" style="border: 2px solid #5DC560;" alt="it's me Image" /></a> </div>
+                                        <div class="post-content-text">
+                                            <h4><span>@item.courseName</span></h4>
+                                            @*<h4><i class="fa fa-calendar-check-o" aria-hidden="true"></i></h4>*@
+                                            <div class="post-more"><a href="@Url.Action("Enrollment", "Home", new { courseid = item.courseId })">View</a> </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            @{
+                                double totalPages = ViewBag.TotalPages;
+
+                                <ul class="pagination">
+                                    @if (ViewBag.PageNumber == 1)
+                                    {
+                                        <li>
+                                            @Html.ActionLink("New Posts", "Courses", new { course = ViewBag.course == null ? "Asc" : ViewBag.course, SortBy = " ", PageNumber = ViewBag.PageNumber })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            @Html.ActionLink("New Posts", "Courses", new { course = ViewBag.course == null ? "Asc" : ViewBag.course, SortBy = " ", PageNumber = ViewBag.PageNumber - 1 })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+
+                                    @for (int i = 1; i <= totalPages; i++)
+                                    {
+                                        if (i == ViewBag.PageNumber)
+                                        {
+                                            <li class="active">
+                                                @Html.ActionLink(i.ToString(), "Courses", new { course = ViewBag.course == null ? "Asc" : ViewBag.course, SortBy = " ", PageNumber = i })
+                                                @*<a>@i</a>*@
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                @Html.ActionLink(i.ToString(), "Courses", new { course = ViewBag.course == null ? "Asc" : ViewBag.course, SortBy = " ", PageNumber = i })
+                                                @*<a>@i</a>*@
+                                            </li>
+                                        }
+                                    }
+                                    @if (ViewBag.PageNumber == totalPages)
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Old Posts", "Courses", new { course = ViewBag.course == null ? "Asc" : ViewBag.course, SortBy = " ", PageNumber = ViewBag.PageNumber })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            @Html.ActionLink("Old Posts", "Courses", new { course = ViewBag.course == null ? "Asc" : ViewBag.course, SortBy = " ", PageNumber = ViewBag.PageNumber + 1 })
+                                            @*<a>@i</a>*@
+                                        </li>
+                                    }
+
+                                </ul>
+
+
+
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+
+            <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+            @if (TempData["msg"] != null)
+            {
+                <script type="text/javascript">
+
+         window.onload = function () {
+          alert("@TempData["msg"]");
+          };
+                </script>
+
+            }
+
+            <!-- /.container-fluid -->
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2019</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+

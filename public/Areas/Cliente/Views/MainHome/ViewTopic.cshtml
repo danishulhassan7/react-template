@@ -1,0 +1,193 @@
+﻿@model edu_course.Models.ClientMessageReplyViewModel
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    //ViewBag.Title = "addfeedback";
+    Layout = "~/Areas/Cliente/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:23 GMT -->
+<head>
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/bootbox.min.js"></script>
+
+
+</head>
+
+<!-- Body -->
+<body>
+    <header class="inner">
+        <!-- Banner -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 id="homeHeading"><a href="index-2.html">Home</a> / <span>Discussion Forum</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+        
+            
+                <div class="list-container post">
+
+
+                    <!-- form row 1 -->
+                    
+                        
+                            <div class="row-fluid">
+                                <!-- form panel 1 -->
+                                <div class="container">
+                                    <div class="card shadow mb-4">
+                                       
+                                        <div class="card-body">
+
+                                            <!-- start panel-->
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3>
+                                                        <span>Current Messages</span>
+
+                                                    </h3>
+                                                </div>
+
+                                                <div class="panel-body">
+                                                    <div class="card-header py-3">
+                                                        <p>
+                                                            @Html.ActionLink("Post New Topic", "addTopic", "MainHome")
+                                                        </p>
+                                                    </div>
+
+                                                    <div class="form-horizontal">
+
+                                                        <div class="form-column col-lg-12 col-md-12 col-sm-12">
+
+                                                            <div class="form-group">
+                                                                @using (Html.BeginForm("DeleteMessage", "MainHome", FormMethod.Post, new { @id = "form-message-delete" }))
+                                                                {
+                                                                    <div class="table-responsive">
+
+                                                                        <!-- table  -->
+                                                                        <table id="table-message-reply" class="table table-bordered table-striped table-message-reply">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th class="tbl-subject">Subject</th>
+                                                                                    <th class="tbl-from">From</th>
+                                                                                    <th class="tbl-date">Date Posted</th>
+                                                                                    <th>Messages</th>
+                                                                                    <th></th>
+                                                                                    <th></th>
+                                                                                </tr>
+                                                                            </thead>
+
+                                                                            @foreach (var m in Model.Messages)
+
+
+                                                                            {
+                                                                                string selectedRow = "";
+                                                                                if (m.Id == ViewBag.MessageId)
+                                                                                {
+                                                                                    selectedRow = "success";
+                                                                                }
+
+                                                                                <tr class="@selectedRow">
+                                                                                    <td>
+                                                                                        <div class="text">@m.Subject</div>
+                                                                                    </td>
+
+                                                                                    <td>
+                                                                                        <div class="text">@m.From</div>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <div class="text">@m.DatePosted.ToString("dd/MM/yyyy")</div>
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <div class="text">@Html.ActionLink("View Discussion", "Discussion",new { Id = m.Id,m.Subject})</div>
+                                                                                    </td>
+
+                                                                                    <td>
+                                                                                        <div class="text edit">
+                                                                                            <a class="delete" href="#" title="delete" onclick="messageDelete(@m.Id)"><img style="width: 17px; height: 15px" src="~/Images/no.png" /></a>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td><input type="hidden" id="messageId" name="messageId" value="@m.Id"></td>
+                                                                                </tr>
+
+                                                                            }
+                                                                        </table>
+                                                                        Page @ViewBag.PageNumber of @ViewBag.TotalPages   @Html.PagedListPager((IPagedList)ViewBag.MessagesInOnePage, page => Url.Action("login", new { page }))
+                                                                        <!-- category table end-->
+
+                                                                    </div>
+                                                                }
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end panel-->
+
+                                
+                            </div>
+                        </div>
+
+                    
+                    <!-- end panel-->
+
+                </div>
+
+            
+    
+       
+
+        <script type="text/javascript">
+
+            function messageDelete(index) {
+                bootbox.dialog({
+                    message: "Are you sure you want to delete the message ?",
+                    title: "Delete Message Confirmation",
+                    buttons: {
+                        success: {
+                            label: "Continue",
+                            className: "btn-success",
+                            callback: function deletemember() {
+                                $('#messageId').val(index);
+                                $('form#form-message-delete').submit();
+                            },
+                            danger: {
+                                label: "Cancel",
+                                className: "btn-danger",
+                                callback: function () {
+                                    bootbox.hideAll();
+                                }
+                            }
+                        }
+                    }
+                });
+
+            };
+        </script>
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <script type="text/javascript">
+
+                window.onload = function () {
+                    alert("@TempData["ErrorMessage"]");
+                };
+            </script>
+
+        }
+    </body>
+</html>

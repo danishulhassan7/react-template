@@ -1,0 +1,125 @@
+﻿@model edu_course.Models.tbl_LectureValidation
+@{
+    //ViewBag.Title = "addfeedback";
+    Layout = "~/Areas/Teacher/Views/Shared/_Layout.cshtml";
+}
+
+<!
+<div ng-controller="headerCtrl">
+    <div class="container" style="background-color:white ; width:80% ">
+        <h2 style="color:black; text-align:center"><b>Lecture Form</b></h2>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <section>
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+
+                                @using (Html.BeginForm("addnotes", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        <hr />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    </div>
+
+                                    @*<div class="form-group">
+                                            @Html.LabelFor(model => model.ClassId, "ClassId", htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownList("ClassId", null, htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.ClassId, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>*@
+                                    <div class="form-group">
+                                        @Html.Label("Lecture Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Lecturename, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text", placeholder = @Html.DisplayName("Enter Lecture Name") } })
+                                            @Html.ValidationMessageFor(model => model.Lecturename, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        @Html.Label("Course", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12 col-sm-12 col-12">
+
+                                            @Html.DropDownListFor(model => model.CourseId, (SelectList)ViewBag.course, "Select Course", new { required = "required", @class = "form-control", @id = "ddCourseId" })
+
+                                            @Html.ValidationMessageFor(x => Model.CourseId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+                                    <div class="form-group">
+                                        @Html.Label("Lecture Url", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.TextBoxFor(model => model.UserdocFIle, new
+                                       {
+                                           @type = "file",@class = "form-control input-sm"
+                                       })
+                                            @Html.ValidationMessageFor(model => model.UserdocFIle, "", new { @class = "text-danger" })
+                                            @Html.ValidationMessage("CustomError")
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        @Html.Label("Lecture Description", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.TextAreaFor(model => model.Lecture_Description, 8, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;", placeholder = @Html.DisplayName("Enter Description") })
+                                            @Html.ValidationMessageFor(model => model.Lecture_Description, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        @Html.Label("Vedio URL", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.VideoLink, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text", placeholder = @Html.DisplayName("Enter Vedio URL") } })
+                                            @Html.ValidationMessageFor(model => model.VideoLink, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="form-group ">
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn btn-success"> Submit </button>
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+
+}

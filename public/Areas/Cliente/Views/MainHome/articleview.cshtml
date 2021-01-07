@@ -1,0 +1,273 @@
+﻿@model edu_course.Models.Article
+@*@using edu_course.Models;
+    @model Tuple<edu_course.Models.Article,edu_course.Models.tbl_ArticleComment>*@
+@{
+    var item = ViewBag.artis;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:23 GMT -->
+<head>
+
+</head>
+
+<!-- Body -->
+<body>
+    <header class="inner">
+        <!-- Banner -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 id="homeHeading"><a href="index-2.html">Home</a> / <span>Single Article</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog single page -->
+    <section class="section-bottom-border">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 list-container post">
+                    <!-- Post Social Sharing icons -->
+                    <!-- Post description -->
+
+                    
+                    <hr>
+                    <p>@Model.Title</p>
+                    <a href="javascript:void(0)">
+                        <div class="list-thumb" style="width: 100%;height:auto;background-image: url('@Url.Content(Model.imgPath)');background-size: 100% 100%;border: 2px solid #5DC560;">
+
+                            <div></div>
+                        </div>
+                    </a> <span class="caption text-muted">@Model.views</span>
+                    <p>@Model.shortDes</p>
+                    <h2 class="single-post-heading">@Model.Title</h2>
+                    <p>@Html.Raw(Model.longDes)</p>
+
+
+                    <!-- post tags -->
+                    <h3>Tags</h3>
+                    <div class="sidebar-tags"> <a href="javascript:void(0)">HTML5</a> <a href="javascript:void(0)">Bootstrap</a> <a href="javascript:void(0)">CSS3</a> <a href="javascript:void(0)">jquery</a> </div>
+                    <hr>
+                    <!-- post social sharing icons -->
+                    <div class="post-social-share">
+                        <span>Share On</span> <a href="javascript:void(0)">
+                            <a href="https://www.facebook.com/sharer.php?u=https://www.learndigitaly.com/MainHome/articleview/@Model.ArticleId&@Model.Title" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                            <a href="javascript:void(0)">
+                                <a href="https://twitter.com/share?url=https://www.learndigitaly.com/MainHome/articleview/@Model.ArticleId&@Model.Title&intent=share" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+                                @*<a href="javascript:void(0)"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
+                                    <a href="javascript:void(0)"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></a>*@
+                                <a href="javascript:void(0)"><a href="https://www.linkedin.com/shareArticle/?mini=true&url=https://www.learndigitaly.com/MainHome/articleview/@Model.ArticleId&@Model.Title&intent=share" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
+                    </div>
+                    <hr>
+                    <!-- Pager -->
+                    <!-- comments -->
+                    <hr>
+
+                    <h3>Comments</h3>
+                    <div class="post-footer">
+                        <form id="commentForm">
+                            <span class="text-warning">
+                                <i class="ratingStar far fa-star" data-value="1"></i>
+                                <i class="ratingStar far fa-star" data-value="2"></i>
+                                <i class="ratingStar far fa-star" data-value="3"></i>
+                                <i class="ratingStar far fa-star" data-value="4"></i>
+                                <i class="ratingStar far fa-star" data-value="5"></i>
+                            </span>
+                            <input type="hidden" name="Rating" id="ratingsvalue" />
+                            <input type="hidden" name="ArticleId" value="@Model.ArticleId" />
+                            <div class="input-group">
+                                <input class="form-control comment-btn" name="CommentDescription" placeholder="Add a comment" type="text">
+                                <span class="input-group-addon"> <button id="btnComment" type="button"><i class="fa fa-edit"></i></button> </span>
+                            </div>
+
+
+                        </form>
+                        <ul class="comments-list">
+                            <li class="comment">
+                                @foreach (var items in ViewBag.coms)
+                                {
+                                    <a class="pull-left" href="javascript:void(0)"> <img class="avatar" src="~/Content/img/user.png" alt="avatar"> </a>
+                                    <div class="comment-body">
+                                        <h5 class="time">@items.artCom.CommentedOn</h5>
+                                        <span class="text-warning pull-right">
+                                            @for (int i = 0; i < @items.artCom.Rating; i++)
+                                            {
+                                                <span class="fas fa-star"></span>
+                                            }
+
+                                            @for (int i = @items.artCom.Rating; i < 5; i++)
+                                            {
+                                                <span class="far fa-star"></span>
+                                            }
+                                        </span>
+
+                                        <p>@items.artCom.CommentDescription</p>
+                                    </div>
+                                }
+                                @*<ul class="comments-list">
+                                    <li class="comment">
+                                        <a class="pull-left" href="javascript:void(0)"> <img class="avatar" src="~/Content/img/user2.png" alt="avatar"> </a>
+                                        <div class="comment-body">
+                                            <div class="comment-heading">
+                                                <h4 class="user">David</h4>
+                                                <h5 class="time">3 minutes ago</h5>
+                                            </div>
+                                            <p>ok, we will make it</p>
+                                        </div>
+                                    </li>
+                                    <li class="comment">
+                                        <a class="pull-left" href="javascript:void(0)"> <img class="avatar" src="~/Content/img/user3.png" alt="avatar"> </a>
+                                        <div class="comment-body">
+                                            <div class="comment-heading">
+                                                <h4 class="user">Thomos</h4>
+                                                <h5 class="time">3 minutes ago</h5>
+                                            </div>
+                                            <p>Ok, cool.</p>
+                                        </div>
+                                    </li>*@
+                                @*</ul>*@
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- comments end -->
+                </div>
+                <!-- ==== Sidebar Starts Here ==== -->
+                <div class="col-md-4 sidebar">
+
+                    <!--Sidebar Social Links-->
+                    <!--Sidebar Popular Posts-->
+                    <h2>Popular Posts</h2>
+                    @foreach (var items in ViewBag.artis)
+                    {
+                        <div class="sidebar-post">
+                            <a href="javascript:void(0)"><span>@items.art.Title</span></a>
+                            <p class="post-meta">Posted by <a href="javascript:void(0)">@items.log.Name</a> on @items.art.CreatedDate</p>
+                        </div>
+                    }
+
+                    <hr>
+                    <!--Sidebar Call to Action-->
+                    <div class="sidebar-cta">
+                        <div>
+                            <img src="img/e-book.png" alt="e book" />
+                            <h3>Please Download E-book</h3>
+                            <button class="btn-download">Download</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Sidebar Categories-->
+                    <h2>Categories</h2>
+                    <ul class="sidebar-list">
+                        <li><a href="javascript:void(0)">Category one</a></li>
+                        <li><a href="javascript:void(0)">Category two</a></li>
+                        <li><a href="javascript:void(0)">Category three</a></li>
+                        <li><a href="javascript:void(0)">Category four</a></li>
+                        <li><a href="javascript:void(0)">Category five</a></li>
+                        <li><a href="javascript:void(0)">Category six</a></li>
+                    </ul>
+                    <hr>
+                    <!--Sidebar Popular Tags-->
+                    <h2>Popular Tags</h2>
+                    <div class="sidebar-tags"> <a href="javascript:void(0)">HTML5</a> <a href="javascript:void(0)">Bootstrap</a> <a href="javascript:void(0)">CSS3</a> <a href="javascript:void(0)">jquery</a> <a href="javascript:void(0)">Blog</a> <a href="javascript:void(0)">HTML Blog</a> <a href="javascript:void(0)">Themeforest</a> <a href="javascript:void(0)">Sidebar</a> </div>
+                </div>
+                <!-- ==== Sidebar Ends Here ==== -->
+            </div>
+        </div>
+    </section>
+    @*<script>
+        function CRateOut(rating) {
+
+        for (var i = 1; i <= rating; i++) {
+        $("#span" + i).attr('class', 'far fa-star')
+        }
+
+        }
+        function CRateOver(rating) {
+        for (var i = 1; i <= rating; i++) {
+        $("#span" + i).attr('class', 'fas fa-star')
+        }
+
+        }
+        function CRateClick(rating) {
+        $("#lblating").val(rating);
+        for (var i = 1; i <= rating; i++) {
+        $("#span" + i).attr('class', 'fas fa-star')
+        }
+
+
+        for (var i = rating + 1; i <= 5; i++) {
+        $("#span" + i).attr('class', 'far fa-star')
+        }
+        }
+        function CRateSelected() {
+
+        var rating = $("#lblating").val();
+        for (var i = 1; i <= rating; i++)
+        $("#span" + i).attr('class', 'fas fa-star')
+        }
+
+        function VerifyRating() {
+        var rating = $("#lblating").val();
+        if (rating == "0") {
+        alert("Please select rating");
+        return false;
+        }
+        }
+
+        </script>*@
+</body>
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:24 GMT -->
+</html>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+    $(".ratingStar").hover(function () {
+        $(".ratingStar").addClass("far").removeClass("fas");
+        $(this).addClass("fas").removeClass("far");
+        $(this).prevAll(".ratingStar").addClass("fas").removeClass("far");
+
+
+
+
+
+    });
+    $(".ratingStar").click(function () {
+        var starvalue = $(this).attr("data-value");
+        $("#ratingsvalue").val(starvalue);
+
+
+
+
+
+    });
+    $("#btnComment").click(function () {
+        $.ajax({
+
+            url: '@Url.Action("LeaveComment", "MainHome", new { Area = ""})',
+            type: "post",
+            data: $("#commentForm").serialize()
+        }).done(function (response) {
+            if (response.Success) {
+                window.location.reload();
+
+            }
+            else {
+                swal("Error", response.Message, "error");
+            }
+        }).fail(function () {
+            swal("Error!", "Error Occurred Please Try Again Later", "error");
+
+        });
+
+
+
+
+    });
+</script>

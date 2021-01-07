@@ -1,0 +1,112 @@
+﻿@model edu_course.Models.Event
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/single-course.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:17 GMT -->
+<head>
+    <!-- Meta -->
+
+</head>
+
+<!-- Body -->
+<body>
+    <header class="inner">
+        <!-- Banner -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 id="homeHeading">Home</> / <span>Event Details</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Single Course Details -->
+    <section class="section-bottom-border">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 list-container post">
+
+
+                    <iframe width="100%" height="400" src="@Model.Event_VenueVideo" frameborder="0" allowfullscreen></iframe>
+                    <div class="list-thumb" style="width: 100%;height:auto;background-image: url('@Url.Content(Model.Event_VenueImage)');background-size: 100% 100%;border: 2px solid #5DC560;">
+                        <div></div>
+                    </div>
+                    <p>@Model.Event_Venue</p>
+                    <h2 class="single-post-heading">@Model.Title</h2>
+                    <p>@Model.Event_Description</p>
+                    <hr>
+                    <!-- Course social sharing icons -->
+                    <div class="post-social-share">
+                        <span>Share On</span> <a href="javascript:void(0)">
+                            <a href="https://www.facebook.com/sharer.php?u=https://www.learndigitaly.com/MainHome/eventsView/@Model.EventId&@Model.Title" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                            <a href="javascript:void(0)">
+                                <a href="https://twitter.com/share?url=https://www.learndigitaly.com/MainHome/eventsView/@Model.EventId&@Model.Title&intent=share" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+                                @*<a href="javascript:void(0)"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
+                                    <a href="javascript:void(0)"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></a>*@
+                                <a href="javascript:void(0)"><a href="https://www.linkedin.com/shareArticle/?mini=true&url=https://www.learndigitaly.com/MainHome/eventsView/@Model.EventId&@Model.Title&intent=share" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
+                    </div>
+                    <hr>
+                </div>
+                <!-- ==== Sidebar Starts Here ==== -->
+                <div class="col-md-4 sidebar">
+
+                    <!--Sidebar Course details-->
+                    <h2>Course Details</h2>
+                    <ul class="ul-course">
+                        <li><span>Course</span>: PHP</li>
+                        <li><span>Price</span>: $120</li>
+                        <li><span>Duration</span>: 3 to 4 Weeks</li>
+                        <li><span>Type</span>: ClassRoom</li>
+                        <li><span>Faculty</span>: Harry Bodd</li>
+                    </ul>
+                    <a href="apply-course.html" class="service-box-button">Apply</a>
+                    <hr>
+                    @foreach (var item in ViewBag.evens)
+                    {
+                    <!--Sidebar Courses-->
+                        <h2>Other Events</h2>
+                        <ul class="other-courses">
+                            <li>
+                                <div class="article-box">
+                                    <article>
+                                        <div class="news-post">
+                                            <div class="img-box"><a href="#"><img src="@Url.Content(item.e.Event_VenueImage)" width="150" height="150" alt="it's me Image" /></a> </div>
+                                            <div class="post-content-text">
+                                                <h4><span>@item.e.Title</span></h4>
+                                                @*<h4><i class="fa fa-calendar-check-o" aria-hidden="true"></i></h4>*@
+                                                <div class="post-more"><a href="@Url.Action("eventsView", "MainHome", new { id = item.e.EventId })">Attend</a> </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </li>
+                            @*<li>
+                                    <div class="article-box">
+                                        <article>
+                                            <div class="news-post">
+                                                <div class="img-box"> <span>$150</span><a href="#"><img src="~/Content/img/news/news1.jpg" alt="it's me Image"></a> </div>
+                                                <div class="post-content-text">
+                                                    <h4><span>Course One</span></h4>
+                                                    <h4><i class="fa fa-calendar-check-o" aria-hidden="true"></i> 3-4 Weeks</h4>
+                                                    <div class="post-more"><a href="single-course.html">Attend</a> </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </li>*@
+                        </ul>
+                    }
+                    <hr>
+                </div>
+                <!-- ==== Sidebar Ends Here ==== -->
+            </div>
+        </div>
+    </section>
+
+</body>
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/single-course.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:18 GMT -->
+</html>

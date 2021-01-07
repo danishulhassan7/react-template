@@ -1,0 +1,128 @@
+﻿@model edu_course.Models.tbl_coursevalidation
+
+
+@{
+    Layout = "~/Areas/Principle/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Themes/ckeditor/ckeditor.js"></script>
+
+<!-- Registrations page-->
+<div ng-controller="headerCtrl">
+    <div class="container" style="background-color:white ; width:80% ">
+        <h2 style="color:black; text-align:center"><b>ADD  COURSES </b></h2>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <section>
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken();
+
+                                    <div class="form-horizontal">
+                                    </div>
+
+
+                                    @*<div class="form-group">
+                @Html.Label("Code", new { @class = "control-label col-md-6" })
+                <div class="col-md-12  col-sm-12 ">
+                    @Html.TextBox("code", null, new { @class = "form-control   ", @placeholder = "Enter Code" })
+                </div>
+            </div>*@
+                                    <div class="form-group">
+                                        @Html.Label("Code", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text", placeholder = @Html.DisplayName("Enter Class Code") } })
+                                            @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.Label("Course Type", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.courseType, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text", placeholder = @Html.DisplayName("Enter Course Type") } })
+                                            @Html.ValidationMessageFor(model => model.courseType, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.EditorFor(model => model.courseName, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text", placeholder = @Html.DisplayName("Enter Course Name ") } })
+                                            @Html.ValidationMessageFor(model => model.courseName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.Label("Description", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-12">
+                                            @Html.TextAreaFor(model => model.courseDescription, 5, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;", @id = "courseDescription", placeholder = @Html.DisplayName("Enter Description") })
+                                            @Html.ValidationMessageFor(model => model.courseDescription, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        @Html.Label("Class", htmlAttributes: new { @class = "control-label col-md-4" })
+
+                                        <div class="col-md-12">
+                                            @Html.DropDownListFor(model => model.Class_Id, (SelectList)ViewBag.school, "Select Class", new { required = "required", @class = "form-control", @id = "ddCourseId" })
+
+                                            @Html.ValidationMessageFor(x => Model.Class_Id, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="form-group ">
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn btn-success"> ADD </button>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<script>
+
+    $(function () {
+
+        $(".datepicker").datepicker({
+
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1990:2020",
+        });
+    });
+
+</script>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+         window.onload = function () {
+          alert("@ViewBag.Message");
+          };
+    </script>
+
+}
+
+
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/apply-course.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:18 GMT -->
+
+
+

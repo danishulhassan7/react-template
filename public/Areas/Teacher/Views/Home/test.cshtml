@@ -1,0 +1,79 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/apply-course.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:18 GMT -->
+<head>
+    @{
+        ViewBag.Title = "articleform";
+    }
+
+</head>
+
+<!-- Body -->
+<body>
+    <!-- Registrations page-->
+    <div ng-controller="headerCtrl">
+        <div class="container" style="background-color:white ; width:80% ">
+            <h2 style="color:black; text-align:center"><b>TEST FORM</b></h2>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <section>
+                            <div class="row">
+                                <div class="col-md-10 offset-md-1">
+                                    <div class="form-horizontal">
+
+
+                                        <div class="form-group">
+                                            @Html.Label("Test Create", new { @class = "control-label col-md-6" })
+
+                                            <div class="col-md-12  col-sm-12">
+                                                @Html.DropDownList("course", new List<SelectListItem> {
+
+                                                    new SelectListItem{Text ="Creat McqsOnline Test Form", Value = "1"},
+                                                    new SelectListItem{Text ="Add File Test File Form", Value = "2"}
+
+                                           }, "Select Text Create Option", new { @class = "form-control" })
+
+                                            </div>
+                                        </div>
+
+                                    
+
+
+                                    <div class="form-group ">
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn btn-success"> ADD </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+            <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+            @if (ViewBag.Message != null)
+            {
+                <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+                </script>
+
+            }
+
+
+
+</body>
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/apply-course.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:18 GMT -->
+</html>
+

@@ -1,0 +1,135 @@
+﻿@model edu_course.Models.KidsStory
+@{
+    ViewBag.Title = "ApproveKidstory";
+    Layout = "~/Areas/Superadmin/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<script src="~/Themes/ckeditor/ckeditor.js"></script>
+<!
+<div ng-controller="headerCtrl">
+    <div class="container" style="background-color:white ; width:80% ">
+        <h2 style="color:black; text-align:center"><b>Approve Kidstory</b></h2>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <section>
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-horizontal">
+                                        <hr />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    </div>
+                                    @*<div class="form-group">
+                                            @Html.HiddenFor(model => model.ArticleId)
+                                        </div>*@
+
+                                    <div class="form-group">
+                                        <img src="@Url.Content(Model.imgPath)" height="135" width="135" />
+                                    </div>
+                                    <div class="form-group">
+
+                                        @Html.Label("Title")
+                                        @Html.EditorFor(Model => Model.StoryTitle, new { htmlAttributes = new { @class = "form-control input-sm", @readonly = "readonly" } })
+                                        @*@Html.ValidationMessageFor(model => model.CreateDate.UserName, "", new { @class = "text-danger" })*@
+                                    </div>
+                                    @*<div class="form-group">
+
+                                        @Html.Label("Date")
+                                        @Html.EditorFor(Model => Model.CreatedOn, new { htmlAttributes = new { @class = "form-control input-sm", @readonly = "readonly" } })*@
+                                    @*@Html.ValidationMessageFor(model => model.CreateDate.UserName, "", new { @class = "text-danger" })*@
+                                    @*</div>*@
+
+                                    @*@Html.HiddenFor(Model => Model.CreatedDate)*@
+
+                                    <div class="form-group">
+
+                                        @Html.Label("Short Description")
+                                        @Html.EditorFor(Model => Model.shortDes, new { htmlAttributes = new { @class = "form-control input-sm", @readonly = "readonly" } })
+                                        @*@Html.ValidationMessageFor(model => model.CreateDate.UserName, "", new { @class = "text-danger" })*@
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.Label("Long Description")
+                                        <div class="col-md-12">
+                                            @Html.TextAreaFor(model => model.longDes, 8, 40, htmlAttributes: new { @readonly = "readonly", style = "width: 100%; max-width: 100%;", @id = "FullDescription", placeholder = @Html.DisplayName("Enter Long Description") })
+
+
+                                            <script>
+
+                                               CKEDITOR.replace("FullDescription");
+                                            </script>
+
+
+                                        </div>
+                                    </div>
+
+                                    @*<div class="form-group">*@
+
+                                    @*@Html.HiddenFor(model=>model.status)*@
+                                    @*@Html.Label("status")
+                                        @if (Model.status == 1)
+                                        {
+                                            @Html.EditorFor(Model => Model.status, new { htmlAttributes = new { @class = "form-control input-sm", @Value = "Pending", @type = "text", @readonly = "readonly" } })
+
+                                        }
+                                        else if (Model.status == 2)
+                                        {
+                                            @Html.EditorFor(Model => Model.status, new { htmlAttributes = new { @class = "form-control input-sm", @Value = "Approved", @type = "text", @readonly = "readonly" } })
+
+                                        }
+                                        else
+
+                                        {
+                                            @Html.EditorFor(Model => Model.status, new { htmlAttributes = new { @class = "form-control input-sm", @Value = "Reject", type = "text", @readonly = "readonly" } })
+                                        }
+                                                                                    @tml.ValidationMessageFor(model => model.CreateDate.UserName, "", new { @class = "text-danger" })
+
+
+                                                                        </div>*@
+
+
+
+
+
+
+                                    <div class="form-group ">
+                                        <div class="col-md-4">
+                                            @if (Model.statusId == 1)
+                                            {
+                                                <input name="submit" type="submit" id="submit" value="Approve" class="btn btn-sm btn-success" />
+                                                <input name="submit" type="submit" id="submit" value="Reject" class="btn btn-sm btn-primary" />
+                                            }
+                                            else if (Model.statusId == 3)
+
+                                            {
+                                                <input name="submit" type="submit" id="process" value="Approve" class="btn btn-sm btn-success" />
+
+                                            }
+                                            else
+
+                                            {
+                                                <input name="submit" type="submit" id="process" value="Reject" class="btn btn-sm btn-success" />
+
+                                            }
+
+                                        </div>
+                                    </div>
+
+                                }
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+

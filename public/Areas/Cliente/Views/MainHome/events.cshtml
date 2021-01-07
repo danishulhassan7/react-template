@@ -1,0 +1,118 @@
+﻿@model IEnumerable<edu_course.Models.ArticleDetail>
+<!DOCTYPE html>
+<html lang="en">
+@{
+// ViewBag.Title = "viewsevent";
+//IEnumerable<SelectListItem> c = ViewBag.course;
+}
+<!-- Mirrored from www.konnectplugins.com/edu-course/course.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:17 GMT -->
+<head>
+
+</head>
+
+<!-- Body -->
+<body>
+    <header class="inner">
+        <!-- Banner -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 id="homeHeading"><a href="@Url.Action("Index", "MainHome")">Home</a> / <span>Events</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- blogs  -->
+    <section class="section-bottom-border">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in ViewBag.evens)
+                {
+
+                <!--Course One-->
+                    <div class="col-sm-4 article-box">
+                        <article>
+                            <div class="news-post">
+                                <div class="img-box"><a href="#"><img src="@Url.Content(item.e.Event_VenueImage)" width="150" height="200" style="border: 2px solid #5DC560;" alt="it's me Image" /></a> </div>
+                                <div class="post-content-text">
+                                    <h4><span>@item.e.Title</span></h4>
+                                    @*<h4><i class="fa fa-calendar-check-o" aria-hidden="true"></i></h4>*@
+                                    <div class="post-more"><a href="@Url.Action("eventsView", "MainHome", new { id = item.e.EventId,item.e.Title })">Attend</a> </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                }
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    @{
+                        double totalPages = ViewBag.TotalPages;
+
+                        <ul class="pagination">
+                            @if (ViewBag.PageNumber == 1)
+                            {
+                                <li>
+                                    @Html.ActionLink("New Posts", "events", new { evens = ViewBag.evens == null ? "Asc" : ViewBag.evens, SortBy = " ", PageNumber = ViewBag.PageNumber })
+                                    @*<a>@i</a>*@
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    @Html.ActionLink("New Posts", "events", new { evens = ViewBag.evens == null ? "Asc" : ViewBag.evens, SortBy = " ", PageNumber = ViewBag.PageNumber - 1 })
+                                    @*<a>@i</a>*@
+                                </li>
+                            }
+
+                            @for (int i = 1; i <= totalPages; i++)
+                            {
+                                if (i == ViewBag.PageNumber)
+                                {
+                                    <li class="active">
+                                        @Html.ActionLink(i.ToString(), "events", new { evens = ViewBag.evens == null ? "Asc" : ViewBag.evens, SortBy = " ", PageNumber = i })
+                                        @*<a>@i</a>*@
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        @Html.ActionLink(i.ToString(), "events", new { evens = ViewBag.evens == null ? "Asc" : ViewBag.evens, SortBy = " ", PageNumber = i })
+                                        @*<a>@i</a>*@
+                                    </li>
+                                }
+                            }
+                            @if (ViewBag.PageNumber == totalPages)
+                            {
+                                <li>
+                                    @Html.ActionLink("Old Posts", "events", new { evens = ViewBag.evens == null ? "Asc" : ViewBag.evens, SortBy = " ", PageNumber = ViewBag.PageNumber })
+                                    @*<a>@i</a>*@
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    @Html.ActionLink("Old Posts", "events", new { evens = ViewBag.evens == null ? "Asc" : ViewBag.evens, SortBy = " ", PageNumber = ViewBag.PageNumber + 1 })
+                                    @*<a>@i</a>*@
+                                </li>
+                            }
+
+                        </ul>
+
+
+
+                    }
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+</body>
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/course.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:17 GMT -->
+</html>

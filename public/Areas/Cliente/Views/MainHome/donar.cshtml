@@ -1,0 +1,101 @@
+﻿@model edu_course.Models.tbl_donarValidation
+
+
+@{
+    //ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Themes/ckeditor/ckeditor.js"></script>
+
+
+<!-- Body -->
+<!-- Registrations page-->
+<section class="section-bottom-border">
+    <div class="container">
+        <div class="row">
+            <div class="login-main template-form">
+
+
+
+                @using (Html.BeginForm("donar", "MainHome", FormMethod.Post, new { onsubmit = "return VerifyRating()" }))
+                {
+                    <div class="form-group">
+                        @Html.Label("Category")
+
+
+                        @Html.DropDownListFor(m => m.CategoryId, (IEnumerable<SelectListItem>)ViewBag.helpCategory, "--Select Donar Type--", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => Model.CategoryId, "", new { @class = "text-danger" })
+
+                    </div>
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+
+                        @Html.Label("Name")
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = @Html.DisplayName("Enter Name") } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+
+                        @Html.Label("Father Name")
+                        @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = @Html.DisplayName("Enter Father Name") } })
+                        @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Email")
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = @Html.DisplayName("Enter Email") } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Nic")
+                        @Html.EditorFor(model => model.Nic, new { htmlAttributes = new { @class = "form-control input-sm", placeholder = @Html.DisplayName("Enter NIC") } })
+                        @Html.ValidationMessageFor(model => model.Nic, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.Label("Comment")
+                        @Html.TextAreaFor(model => model.Description, 8, 40, htmlAttributes: new { required = "required", style = "width: 100%; max-width: 100%;", @id = "FullDescription", placeholder = @Html.DisplayName("Enter Comment") })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                        <script>
+                            CKEDITOR.replace("FullDescription");
+                        </script>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <input type="submit" class="btn btn btn-success active" value="Save Comment" name=" SaveComment">
+
+                    </div>
+
+                }
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</section>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+    </script>
+
+}

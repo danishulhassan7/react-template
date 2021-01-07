@@ -1,0 +1,116 @@
+﻿@model edu_course.Models.TechnicTip
+@{
+    var item = ViewBag.artis;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:23 GMT -->
+<head>
+
+</head>
+
+<!-- Body -->
+<body>
+    <header class="inner">
+        <!-- Banner -->
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1 id="homeHeading"><a href="index-2.html">Home</a> / <span>Learning Tips</span></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Blog single page -->
+    <section class="section-bottom-border">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 list-container post">
+                    <!-- Post Social Sharing icons -->
+                    <!-- Post description -->
+
+
+                    <hr>
+                    <p>@Model.Title</p>
+                    <a href="javascript:void(0)">
+                        <iframe width="100%" height="400" src="@Model.VedioPath" frameborder="0" allowfullscreen></iframe>
+                     
+                    </a> <span class="caption text-muted">@Model.views</span>
+                    <p>@Model.shortDes</p>
+                    <h2 class="single-post-heading">@Model.Title</h2>
+                    <p>@Html.Raw(Model.longDes)</p>
+
+
+                    <!-- post tags -->
+                    <h3>Tags</h3>
+                    <div class="sidebar-tags"> <a href="javascript:void(0)">HTML5</a> <a href="javascript:void(0)">Bootstrap</a> <a href="javascript:void(0)">CSS3</a> <a href="javascript:void(0)">jquery</a> </div>
+                    <hr>
+                    <!-- post social sharing icons -->
+                    <div class="post-social-share">
+                        <span>Share On</span> <a href="javascript:void(0)">
+                            <a href="https://www.facebook.com/sharer.php?u=https://www.learndigitaly.com/MainHome/learningtipview/@Model.tipsId&@Model.Title" target="_blank"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
+                            <a href="javascript:void(0)">
+                                <a href="https://twitter.com/share?url=https://www.learndigitaly.com/MainHome/learningtipview/@Model.tipsId&@Model.Title&intent=share" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+                                @*<a href="javascript:void(0)"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
+                                    <a href="javascript:void(0)"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></a>*@
+                                <a href="javascript:void(0)"><a href="https://www.linkedin.com/shareArticle/?mini=true&url=https://www.learndigitaly.com/MainHome/learningtipview/@Model.tipsId&@Model.Title&intent=share" target="_blank"><i class="fa fa-linkedin fa-2x" aria-hidden="true"></i></a>
+                    </div>
+                    <hr>
+                    <!-- Pager -->
+                    <!-- comments -->
+                    
+                    <!-- comments end -->
+                </div>
+                <!-- ==== Sidebar Starts Here ==== -->
+                <div class="col-md-4 sidebar">
+
+                    <!--Sidebar Social Links-->
+                    <!--Sidebar Popular Posts-->
+                    <h2>Popular Posts</h2>
+                    @foreach (var items in ViewBag.technic)
+                    {
+                        <div class="sidebar-post">
+                            <a href="javascript:void(0)"><span>@items.tec.Title</span></a>
+                            <p class="post-meta">Posted by <a href="javascript:void(0)">@items.log.Name</a> on @items.tec.CreatedDate</p>
+                        </div>
+                    }
+
+                    <hr>
+                    <!--Sidebar Call to Action-->
+                    <div class="sidebar-cta">
+                        <div>
+                            <img src="img/e-book.png" alt="e book" />
+                            <h3>Please Download E-book</h3>
+                            <button class="btn-download">Download</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--Sidebar Categories-->
+                    <h2>Categories</h2>
+                    <ul class="sidebar-list">
+                        <li><a href="javascript:void(0)">Category one</a></li>
+                        <li><a href="javascript:void(0)">Category two</a></li>
+                        <li><a href="javascript:void(0)">Category three</a></li>
+                        <li><a href="javascript:void(0)">Category four</a></li>
+                        <li><a href="javascript:void(0)">Category five</a></li>
+                        <li><a href="javascript:void(0)">Category six</a></li>
+                    </ul>
+                    <hr>
+                    <!--Sidebar Popular Tags-->
+                    <h2>Popular Tags</h2>
+                    <div class="sidebar-tags"> <a href="javascript:void(0)">HTML5</a> <a href="javascript:void(0)">Bootstrap</a> <a href="javascript:void(0)">CSS3</a> <a href="javascript:void(0)">jquery</a> <a href="javascript:void(0)">Blog</a> <a href="javascript:void(0)">HTML Blog</a> <a href="javascript:void(0)">Themeforest</a> <a href="javascript:void(0)">Sidebar</a> </div>
+                </div>
+                <!-- ==== Sidebar Ends Here ==== -->
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+<!-- Mirrored from www.konnectplugins.com/edu-course/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:49:24 GMT -->
+</html>

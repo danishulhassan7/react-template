@@ -1,0 +1,663 @@
+﻿@model IEnumerable<edu_course.Models.ArticleDetail>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        #more {
+            display: none;
+        }
+
+        #mored {
+            display: none;
+        }
+
+        #moredd {
+            display: none;
+        }
+        .Image img{
+            width: 100%;
+            height:150px;
+            background-size: 100% 100%;
+            border: 2px solid #5DC560;
+        }
+    </style>
+</head>
+<!-- Body -->
+<body>
+
+    <!--Konnect Slider -->
+    <div class='konnect-carousel carousel-image carousel-image-pagination carousel-image-arrows flexslider'>
+        <ul class='slides'>
+            <!--Slider One-->
+            <li class='item'>
+                <div class='container'>
+                    <div class='row pos-rel'>
+                        <div class='col-sm-12 col-md-6 animate'>
+                            <h1 class='big fadeInDownBig animated'>Build Your Career & Get Professional Certificates</h1>
+                            <p class='normal fadeInUpBig animated delay-point-five-s'>With our series of courses, certifications, lectures, informative videos and study materials, you will learn the skills needed to excel in the job market of future, prepare for your career, <span id="dots">...</span><span id="more"> upgrade yourself professionally with on-demand T&D courses, obtain certificates, and all at your own pace!</span></p>
+                            <a class='btn btn-bordered btn-white btn-lg fadeInRightBig animated delay-one-s' href='#' onclick="myFunction()" id="myBtn"> Show more </a>
+                        </div>
+                        <div class='col-md-6 animate pos-sta hidden-xs hidden-sm'> <img class="img-responsive img-right fadeInUpBig animated delay-one-point-five-s" alt="iPhone" src="~/Content/img/slider/student-1.png" /> </div>
+                    </div>
+                </div>
+            </li>
+
+            <!--Slider Two-->
+            <li class='item'>
+                <div class='container'>
+                    <div class='row pos-rel'>
+                        <div class='col-md-6 animate pos-sta hidden-xs hidden-sm'> <img class="img-responsive img-left fadeInUpBig animated" alt="Circle" src="~/Content/img/slider/student-2.png" /> </div>
+                        <div class='col-sm-12 col-md-6 animate'>
+                            <h2 class='big fadeInUpBig animated delay-point-five-s'>Get Academically Smarter!</h2>
+                            <p class='normal fadeInDownBig animated delay-one-s'>We help Elementary, Secondary, Intermediate, Undergraduate and Graduate learners to excel academically with resources that suit their learning styles. You will have access to a resourceful onlin classroom, assignments, a diverse range of study materials, online assessments and discussion board.<span id="dotss">...</span><span id="mored"> We have a separate section for our elementary learners   where we highly encourage them to read, write, get their stories featured on this website and earn a free certificate on the successful completion of our reading resources.</span></p>
+                            <a class='btn btn-bordered btn-white btn-lg fadeInLeftBig animated delay-one-point-five-s' href='#' onclick="getAcademy()" id="myBtna"> Show more </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <!--Slider Three-->
+            <li class='item'>
+                <div class='container'>
+                    <div class='row pos-rel'>
+                        <div class='col-sm-12 col-md-6 animate'>
+                            <h2 class='big fadeInLeftBig animated'>Master Soft Skills</h2>
+                            <p class='normal fadeInRightBig animated delay-point-five-s'>
+                                We firmly believe in personal development too, and so we feature courses and articles on self-help, including soft skills needed to succeed in 21st century. As learners exercise their mental muscle with us, they:
+
+                                <ul class='normal fadeInRightBig animated delay-point-five-s' style="margin-top:-2px">
+                                    <span id="doted">...</span>
+                                    <span id="moredd">
+                                        <li> Pursue cognitive development </li>
+                                        <li>
+                                            Upskill themselves in their career
+                                        </li>
+                                        <li>
+                                            Succeed in personal life and relationships
+                                        </li>
+                                    </span>
+                                </ul>
+
+                            </p>
+                            <a class='btn btn-bordered btn-white btn-lg fadeInUpBig animated delay-one-s' href='#' onclick="masterSoft()" id="myBtna"> Show more </a>
+                        </div>
+                        <div class='col-md-6 animate pos-sta hidden-xs hidden-sm'> <img class="img-responsive img-right fadeInUpBig animated delay-one-point-five-s" alt="Man" src="~/Content/img/slider/student-3.png" /> </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="container banner">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="banner-bar">
+                    <div id="divQuestionOption">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container banner">
+        <div class="row">
+
+            <div class="col-sm-12">
+                @*<div class="banner-bar">*@
+
+                <div class="row">
+                    <div class="col-md-12" data-wow-delay="0.2s">
+
+
+
+                        <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                            <!-- Carousel Slides / Quotes -->
+                            <div class="carousel-inner text-center">
+
+                                @{ int j = 0;}
+                                @foreach (var item in ViewBag.we)
+                                {
+                                    j++;
+                                    var active = j == 1 ? "active" : "";
+                                    <div class="item @active">
+                                        <div class="col-md-12 col-xs-12">
+                                            @*<div style="background:url(https://www.talentlms.com/wp-content/uploads/2018/09/learning-vs-training-differences.jpg)no-repeat;height:170px;background-size:contain;background-size:cover;">*@
+                                            <div class="row align-items-center" style="vertical-align:middle;">
+                                                <a data-slide="prev" href="#quote-carousel" class="left carousel-control" style="margin-top:5%;"><i class="fa fa-angle-left"></i></a> <a data-slide="next" href="#quote-carousel" class="right carousel-control" style="margin-top:5%;"><i class="fa fa-angle-right"></i></a>
+                                                <div class="col-md-8 col-md-offset-2 col-xs-12" style="margin-top:2%;">
+                                                    <div class="Image" style="background:url(@Url.Content(item.wed.Image))no-repeat contain cover;">
+
+
+                                                        <a href="@item.wed.linq"><img src="@Url.Content(item.wed.Image)" height="170" ;background-size="contain" alt="it's me Image" /></a>
+                                                        @*<p style="font:100px;"><strong>@Html.Raw(item.review.Comment)</strong></p>
+
+                                                            <small><strong><span style="font-size:large;">@item.review.Name</span></strong></small>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                    @*</div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Courses-->
+    <section class="template-news">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-heading text-dark">Blog</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque erat, ultrices cursus nisi at, hendrerit tristique.</p>
+                    <div class="template-space"></div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var item in ViewBag.blog)
+                {
+
+                    <!--Course One-->
+                    <div class="col-sm-4 article-box">
+                        <article>
+                            <div class="news-post">
+                                <div class="img-box"><a href="#"><img src="@Url.Content(item.blo.imgPath)" height="200" alt="it's me Image" /></a> </div>
+                                <div class="post-content-text">
+                                    <h4><span>@item.blo.Title</span></h4>
+                                    @*<h4><i class="fa fa-calendar-check-o" aria-hidden="true"></i></h4>*@
+                                    <div class="post-more"><a href="@Url.Action("blogView", "MainHome", new { id = item.blo.BlogId,item.blo.Title })">Attend</a> </div>
+
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                }
+                <div class="col-md-12 text-center margin-10"> <a class="service-box-button" href="@Url.Action("blog","MainHome")">View More Blog</a> </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="section-heading text-dark">Offering Courses</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque erat, ultrices cursus nisi at, hendrerit tristique.</p>
+                    <div class="template-space"></div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var item in ViewBag.course)
+                {
+
+                    <!--Course One-->
+                    <div class="col-sm-4 article-box">
+                        <article>
+                            <div class="news-post">
+                                <div class="img-box"><a href="#"><img src="@Url.Content(item.imageLink)" height="200" alt="it's me Image" /></a> </div>
+                                <div class="post-content-text">
+                                    <h4><span>@item.courseName</span></h4>
+                                    @*<h4><i class="fa fa-calendar-check-o" aria-hidden="true"></i></h4>*@
+                                    <div class="post-more"><a href="@Url.Action("SingleCourse", "MainHome", new { id = item.courseId,item.courseName })">Attend</a> </div>
+
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                }
+                <div class="col-md-12 text-center margin-10"> <a class="service-box-button" href="@Url.Action("Courses","MainHome")">View More Courses</a> </div>
+            </div>
+            <hr />
+            <div class="container" style="margin-top:50px">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="section-heading text-dark">Learning Tips</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque erat, ultrices cursus nisi at, hendrerit tristique.</p>
+                        <div class="template-space"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    @foreach (var item in ViewBag.techni)
+                    {
+
+                        <!--Course One-->
+                        <div class="col-sm-4 article-box">
+                            <article>
+                                <div class="news-post">
+                                    <div class="fa-video"><a href="#"><iframe width="100%" src="@item.tec.VedioPath" frameborder="0" allowfullscreen></iframe></a> </div>
+
+                                </div>
+                                <br />
+                                <br />
+                                <br />
+
+                                <div class="post-content-text margin-top-40 w-auto">
+                                    <h4><span>@item.tec.Title</span></h4>
+                                    <h4><i class="fa fa-calendar-check-o" aria-hidden="true">Posted by&nbsp;<a href="javascript:void(0)">@item.log.Name</a> on @item.tec.CreatedDate</i></h4>
+
+                                    <div class="post-more"><a href="@Url.Action("learningtipview", "MainHome", new { id = item.tec.tipsId,item.tec.Title })">View</a> </div>
+
+                                </div>
+                            </article>
+                        </div>
+                    }
+                    <div class="col-md-12 text-center margin-10"> <a class="service-box-button" href="@Url.Action("learningtip","MainHome")">View More Learning Tips</a> </div>
+                </div>
+                <hr />
+                <div class="container" style="margin-top:50px">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="section-heading text-dark">Kid Story</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque erat, ultrices cursus nisi at, hendrerit tristique.</p>
+                            <div class="template-space"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach (var item in ViewBag.ks)
+                        {
+
+                        <!--Course One-->
+                            <div class="col-sm-4 article-box">
+                                <article>
+                                    <div class="news-post">
+                                        <div class="img-box"><a href="#"><img src="@Url.Content(item.KS.imgPath)" height="200" alt="it's me Image" /></a> </div>
+                                        <div class="post-content-text">
+                                            <h4><span>@item.KS.StoryTitle</span></h4>
+                                            <h4><i class="fa fa-calendar-check-o" aria-hidden="true">Posted by&nbsp;<a href="javascript:void(0)">@item.KST.KidsStoryName</a> on @item.KS.CreatedDate</i></h4>
+
+                                            <div class="post-more"><a href="@Url.Action("kidStoryView", "MainHome", new { id = item.KS.StoryId,item.KS.StoryTitle })">View</a> </div>
+
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        }
+                        <div class="col-md-12 text-center margin-10"> <a class="service-box-button" href="@Url.Action("kidStory","MainHome")">View More Kids Story</a> </div>
+                    </div>
+                    <hr />
+                    <div class="container" style="margin-top:50px">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 class="section-heading text-dark">Kids Telent</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque erat, ultrices cursus nisi at, hendrerit tristique.</p>
+                                <div class="template-space"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @foreach (var item in ViewBag.telent)
+                            {
+
+                        <!--Course One-->
+                                <div class="col-sm-4 article-box">
+                                    <article>
+                                        <div class="news-post">
+                                            <div class="fa-video"><a href="#"><iframe width="100%" src="@item.kt.VedioPath" frameborder="0" allowfullscreen></iframe></a> </div>
+
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <br />
+
+                                        <div class="post-content-text margin-top-40 w-auto">
+                                            <h4><span>@item.kt.Title</span></h4>
+                                            <h4><i class="fa fa-calendar-check-o" aria-hidden="true">Posted by&nbsp;<a href="javascript:void(0)">@item.log.Name</a> on @item.kt.CreatedDate</i></h4>
+
+                                            <div class="post-more"><a href="@Url.Action("kidstalentview", "MainHome", new { id = item.kt.telentId,item.kt.Title })">View</a> </div>
+
+                                        </div>
+                                    </article>
+                                </div>
+                            }
+                            <div class="col-md-12 text-center margin-10"> <a class="service-box-button" href="@Url.Action("kidstalent","MainHome")">View More Kids Telent</a> </div>
+                        </div>
+                        <hr />
+                        <div class="container" style="margin-top:50px">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2 class="section-heading text-dark">Articles</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque erat, ultrices cursus nisi at, hendrerit tristique.</p>
+                                    <div class="template-space"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                @foreach (var item in ViewBag.arti)
+                                {
+
+                            <!--Course One-->
+                                    <div class="col-sm-4 article-box">
+                                        <article>
+                                            <div class="news-post">
+                                                <div class="img-box"><a href="#"><img src="@Url.Content(item.art.imgPath)" height="200" alt="it's me Image" /></a> </div>
+                                                <div class="post-content-text">
+                                                    <h4><span>@item.art.Title</span></h4>
+                                                    <h4><i class="fa fa-calendar-check-o" aria-hidden="true">Posted by&nbsp;<a href="javascript:void(0)">@item.log.Name</a> on @item.art.CreatedDate</i></h4>
+
+                                                    <div class="post-more"><a href="@Url.Action("articleview", "MainHome", new { id = item.art.ArticleId,item.art.Title })">View</a> </div>
+
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                }
+                                <div class="col-md-12 text-center margin-10"> <a class="service-box-button" href="@Url.Action("article","MainHome")">View More Articles</a> </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="container" style="margin-top:50px">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2 class="section-heading text-dark">Jobs</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque erat, ultrices cursus nisi at, hendrerit tristique.</p>
+                                    <div class="template-space"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                @foreach (var item in ViewBag.job)
+                                {
+
+                <!--Course One-->
+                                    <div class="col-sm-4 article-box">
+                                        <article>
+
+                                            <div class="news-post">
+                                                <div class="img-box"><a href="#"><img src="https://www.prozameen.com/@Url.Content(item.imageUrl)" height="200" alt="it's me Image" /></a> </div>
+                                                <div class="post-content-text">
+                                                    <h4><span>@item.jobTitle</span></h4>
+                                                    <h4><i class="fa fa-calendar-check-o" aria-hidden="true">Posted on @item.date</i></h4>
+
+                                                    <div class="post-more"><a href="@Url.Action("SingleJob", "MainHome", new { id = item.jobId,item.jobTitle })">View</a> </div>
+
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                }
+                                <div class="col-md-12 text-center margin-10"> <a class="service-box-button" href="@Url.Action("Job", "MainHome")">View More Job</a> </div>
+                            </div>
+                        </div>
+    </section>
+
+    <!--Testmonials -->
+    <aside class="dark-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-white">
+                    <h2 class="section-heading text-white">Reviews</h2>
+                    <div class="template-space"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" data-wow-delay="0.2s">
+                    <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                        <!-- Carousel Slides / Quotes -->
+                        <div class="carousel-inner text-center">
+                            <!--Testmonial One active-->
+@{ int i = 0;}
+@foreach (var item in Model)
+        {
+            i++;
+            var active = i == 1 ? "active" : "";
+    <div class="item @active">
+        
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-xs-12">
+                    <p>@Html.Raw(item.review.Comment)</p>
+                   
+                     <small><span>@item.review.Name</span></small>
+                </div>
+            </div>
+        
+    </div>
+
+}
+                            
+                        <!-- Carousel Buttons Next/Prev -->
+                        <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-angle-left"></i></a> <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-angle-right"></i></a>
+                        <!-- Bottom Carousel Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#quote-carousel" data-slide-to="1"></li>
+                            <li data-target="#quote-carousel" data-slide-to="2"></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center margin-10"> <a class="service-box-button" href="@Url.Action( "AdReview", "MainHome")">Add Review</a> </div>
+            <div class="col-md-12 text-center margin-10"> <a class="service-box-button" href="@Url.Action( "viewWebsiteReview", "MainHome")">View Review</a> </div>
+        </div>
+    </div>
+    <!-- Gallery Box-->
+    <section class="template-news">
+        <div class="container">
+            <div class="container" style="margin-top:50px">
+                <div class="container" style="margin-top:50px">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 class="section-heading text-dark">Business Offer</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec neque erat, ultrices cursus nisi at, hendrerit tristique.</p>
+                            <div class="template-space"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach (var item in ViewBag.artii)
+                        {
+
+                            <!--Course One-->
+                            <div class="col-sm-4 article-box">
+                                <article>
+                                    <div class="news-post">
+                                        <div class="img-box"><a href="#"><img src="@Url.Content(item.bo.imgPath)" height="200" alt="it's me Image" /></a> </div>
+                                        <div class="post-content-text">
+                                            <h4><span>@item.bo.Title</span></h4>
+                                            <h4><i class="fa fa-calendar-check-o" aria-hidden="true">Posted by&nbsp;<a href="javascript:void(0)">@item.log.Name</a> on @item.bo.CreatedDate</i></h4>
+
+                                            <div class="post-more"><a href="@Url.Action("businessOfferview", "MainHome", new { id = item.bo.OfferId,item.bo.Title })">View</a> </div>
+
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        }
+                        <div class="col-md-12 text-center margin-10"> <a class="service-box-button" href="@Url.Action("businessOffer","MainHome")">View More business Offer</a> </div>
+                    </div>
+                </div>
+
+                <!-- /.modal image -->
+                <!--  Modal content two-->
+
+
+            </div>
+    </section>
+    <div class="container banner">
+        <div class="row">
+
+            <div class="col-sm-12">
+                @*<div class="banner-bar">*@
+
+                <div class="row">
+                    <div class="col-md-12" data-wow-delay="0.2s">
+
+
+
+                        <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                            <!-- Carousel Slides / Quotes -->
+                            <div class="carousel-inner text-center">
+
+                                @{ int k = 0;}
+                                @foreach (var item in ViewBag.we)
+                                {
+                                    k++;
+                                    var active = k == 1 ? "active" : "";
+                                    <div class="item @active">
+                                        <div class="col-md-12 col-xs-12">
+                                            @*<div style="background:url(https://www.talentlms.com/wp-content/uploads/2018/09/learning-vs-training-differences.jpg)no-repeat;height:170px;background-size:contain;background-size:cover;">*@
+                                            <div class="row align-items-center" style="vertical-align:middle;">
+                                                <a data-slide="prev" href="#quote-carousel" class="left carousel-control" style="margin-top:5%;"><i class="fa fa-angle-left"></i></a> <a data-slide="next" href="#quote-carousel" class="right carousel-control" style="margin-top:5%;"><i class="fa fa-angle-right"></i></a>
+                                                <div class="col-md-8 col-md-offset-2 col-xs-12" style="margin-top:2%;">
+                                                    <div class="Image" style="background:url(@Url.Content(item.wed.Image))no-repeat contain cover;">
+
+                                                        <a href="@item.wed.linq"><img src="@Url.Content(item.wed.Image)" height="170" ;background-size="contain" alt="it's me Image" /></a>
+                                                        @*<p style="font:100px;"><strong>@Html.Raw(item.review.Comment)</strong></p>
+
+                                                            <small><strong><span style="font-size:large;">@item.review.Name</span></strong></small>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    @*</div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Call To Action-->
+    @*<aside class="theme-bg aside-cta">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12 text-white">
+                    <h3 class="margin-10 text-white">Do you really like one page templates ?</h3>
+                </div>
+                <div class="col-sm-6 col-xs-12 text-center text-white purchase-button"> <a href="javascript:void(0)" class="template-button"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Purchase Now</a> </div>
+            </div>
+        </div>
+    </aside>*@
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        function myFunction() {
+            var dots = document.getElementById("dots");
+            var moreText = document.getElementById("more");
+            var btnText = document.getElementById("myBtn");
+
+            if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                btnText.innerHTML = "Show more";
+                moreText.style.display = "none";
+            } else {
+                dots.style.display = "none";
+                btnText.innerHTML = "Show less";
+                moreText.style.display = "inline";
+            }
+        }
+
+        function getAcademy() {
+            var dots = document.getElementById("dotss");
+            var moreText = document.getElementById("mored");
+            var btnText = document.getElementById("myBtna");
+
+            if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                btnText.innerHTML = "Show more";
+                moreText.style.display = "none";
+            } else {
+                dots.style.display = "none";
+                btnText.innerHTML = "Show less";
+                moreText.style.display = "inline";
+            }
+        }
+        function masterSoft() {
+            var dots = document.getElementById("doted");
+            var moreText = document.getElementById("moredd");
+            var btnText = document.getElementById("myBtna");
+
+            if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                btnText.innerHTML = "Show more";
+                moreText.style.display = "none";
+            } else {
+                dots.style.display = "none";
+                btnText.innerHTML = "Show less";
+                moreText.style.display = "inline";
+            }
+        }
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        LoadQuestion();
+
+    });
+
+    function SaveCandidateAnswer(){
+
+
+        var answerText = "";
+        $.each($("#tblQuestionOption tr").find("td:eq(0) input[type=radio]:checked"),
+            function () {
+                answerText = $(this).val();
+            });
+        var CandidateAnswer = { QuestionId: $("#txtQuestionId").val(), AnswerText: answerText }
+        debugger
+
+        $.ajax({
+            async: true,
+            type: 'GET',
+            dataType: 'JSON',
+            contentType: "application/json; charset=utf-8",
+            url: '@Url.Action("SaveCandidateAnswer", "MainHome", new { Area = "" })',
+            data: CandidateAnswer,
+            success: function (data) {
+                if (data.success === true) {
+                    alert(data.message);
+                    window.location.reload;
+                    @*window.location.href = '@Url.Action("GetFinalResult","Home", new { Area = "" })';*@
+                }
+            },
+            error: function (data) {
+                alert(data);
+            }
+
+        });
+
+    }
+
+    function LoadQuestion() {
+
+        var answerText = "";
+        $.each($("#tblQuestionOption tr").find("td:eq(0) input[type=radio]:checked"),
+            function () {
+                answerText = $(this).val();
+            });
+        var CandidateAnswer = { QuestionId: $("#txtQuestionId").val(),  AnswerText: answerText  }
+
+        debugger
+        $.ajax({
+            async: true,
+            type: 'GET',
+            dataType: 'HTML',
+            contentType: "application/json; charset=utf-8",
+            url: '@Url.Action("UserQuestionAnswer","MainHome", new { Area = "" })',
+            data: CandidateAnswer,
+            success: function (data) {
+                $("#divQuestionOption").html(data);
+
+            },
+            error: function (data) {
+                alert(data);
+            }
+
+        });
+    }
+
+    </script>
+
+
+</body>
+<!-- Mirrored from www.konnectplugins.com/edu-course/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 15:48:46 GMT -->
+</html>
